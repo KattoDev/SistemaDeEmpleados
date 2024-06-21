@@ -34,3 +34,16 @@ El sistema debe permitir el registro de la asistencia de los empleados, incluyen
 
 ### 7. Gestión de permisos y ausencias:
 El sistema debe permitir a los empleados solicitar permisos o reportar ausenci
+
+<details>
+  <summary>8. Evaluación de desempeño: (omitido)</summary>
+  El sistema debe permitir realizar evaluaciones periódicas del desempeño de los empleados. Debe permitir la creación de criterios de evaluación, asignar puntuaciones y generar informes de desempeño individual y grupal.
+</details>
+
+### 9. Generación de informes y estadísticas:
+El sistema debe generar informes y estadísticas sobre el rendimiento de los empleados, como el número de tareas completadas, el promedio de asistencia, la distribución de empleados por departamento, entre otros.
+
+### 10. Autenticación y autorización:
+El sistema debe implementar un mecanismo de autenticación y autorización para garantizar que solo los usuarios registrados y autorizados puedan acceder y realizar acciones en el sistema.
+
+---
