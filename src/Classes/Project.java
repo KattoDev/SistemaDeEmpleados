@@ -1,12 +1,11 @@
 package Classes;
 
 public class Project {
-    public String name;
-    public String status;
-    public String deadline;
+    
+    public String assignedProject;
+    public String Status;
+    public String dueDate;
 
-    public void AssignProject(){}
-    public void UpdateStatus(){}
-    public void FinishProject(){}
-
+    public void assignProject(){}
+    
 }
