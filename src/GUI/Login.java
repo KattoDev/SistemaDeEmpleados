@@ -4,7 +4,7 @@
  */
 package GUI;
 
-import ColorScheme.SetColor;
+import GUI.EmployeeRegister;
 
 /**
  *
@@ -65,12 +65,12 @@ public class Login extends javax.swing.JFrame {
         content.setBackground(new java.awt.Color(255, 255, 255));
         content.setPreferredSize(new java.awt.Dimension(520, 445));
 
-        usernameContainer.setBackground(SetColor.DESERT_SAND);
+        usernameContainer.setBackground(ColorScheme.SetColor.DESERT_SAND);
         usernameContainer.setPreferredSize(new java.awt.Dimension(280, 30));
 
-        txt_username.setBackground(SetColor.DESERT_SAND);
+        txt_username.setBackground(ColorScheme.SetColor.DESERT_SAND);
         txt_username.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
-        txt_username.setForeground(SetColor.UMBER);
+        txt_username.setForeground(ColorScheme.SetColor.UMBER);
         txt_username.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txt_username.setText("Usuario:");
         txt_username.setBorder(null);
@@ -108,11 +108,11 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(ico_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        passwordContainer.setBackground(SetColor.DESERT_SAND);
+        passwordContainer.setBackground(ColorScheme.SetColor.DESERT_SAND);
         passwordContainer.setPreferredSize(new java.awt.Dimension(280, 35));
 
-        txt_password.setBackground(SetColor.DESERT_SAND);
-        txt_password.setForeground(SetColor.UMBER);
+        txt_password.setBackground(ColorScheme.SetColor.DESERT_SAND);
+        txt_password.setForeground(ColorScheme.SetColor.UMBER);
         txt_password.setText("12345678");
         txt_password.setBorder(null);
         txt_password.setPreferredSize(new java.awt.Dimension(245, 35));
@@ -149,7 +149,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        loginContainer.setBackground(SetColor.DESERT_SAND);
+        loginContainer.setBackground(ColorScheme.SetColor.DESERT_SAND);
         loginContainer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         loginContainer.setMaximumSize(new java.awt.Dimension(280, 30));
         loginContainer.setMinimumSize(new java.awt.Dimension(280, 30));
@@ -161,7 +161,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         lbl_login.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
-        lbl_login.setForeground(SetColor.UMBER);
+        lbl_login.setForeground(ColorScheme.SetColor.UMBER);
         lbl_login.setText("Iniciar Sesion");
 
         javax.swing.GroupLayout loginContainerLayout = new javax.swing.GroupLayout(loginContainer);
@@ -182,7 +182,7 @@ public class Login extends javax.swing.JFrame {
         );
 
         lbl_appName.setFont(new java.awt.Font("Bungee", 1, 24)); // NOI18N
-        lbl_appName.setForeground(SetColor.UMBER);
+        lbl_appName.setForeground(ColorScheme.SetColor.UMBER);
         lbl_appName.setText("Sistema de empleados");
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
@@ -236,7 +236,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        btn_close.setBackground(SetColor.COPPER_RED);
+        btn_close.setBackground(ColorScheme.SetColor.COPPER_RED);
         btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_close.setMinimumSize(new java.awt.Dimension(25, 25));
 
@@ -334,18 +334,18 @@ public class Login extends javax.swing.JFrame {
 
     private void txt_usernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_usernameFocusGained
         if("usuario:".equals(txt_username.getText().toLowerCase())){
-            txt_username.setForeground(SetColor.UMBER);
+            txt_username.setForeground(ColorScheme.SetColor.UMBER);
             txt_username.setText("");
         }
     }//GEN-LAST:event_txt_usernameFocusGained
 
     private void txt_usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_usernameFocusLost
         if(txt_username.getText().isBlank()){
-            txt_username.setForeground(SetColor.ROSE_TAUPE);
+            txt_username.setForeground(ColorScheme.SetColor.ROSE_TAUPE);
             txt_username.setText("Usuario:");
         }
         else{
-            txt_username.setForeground(SetColor.UMBER);
+            txt_username.setForeground(ColorScheme.SetColor.UMBER);
         }
     }//GEN-LAST:event_txt_usernameFocusLost
 
@@ -362,11 +362,11 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_loginContainerMouseClicked
 
     private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
-        btn_close.setBackground(SetColor.CHESTNUT);
+        btn_close.setBackground(ColorScheme.SetColor.CHESTNUT);
     }//GEN-LAST:event_jLabel1MouseEntered
 
     private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
-        btn_close.setBackground(SetColor.COPPER_RED);
+        btn_close.setBackground(ColorScheme.SetColor.COPPER_RED);
     }//GEN-LAST:event_jLabel1MouseExited
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked

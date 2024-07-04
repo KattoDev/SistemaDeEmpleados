@@ -4,20 +4,33 @@
  */
 package GUI;
 
-import ColorScheme.SetColor;
 /**
- *
  * @author Kris
  */
 public class Dashboard extends javax.swing.JFrame {
     
+    // content window for modules in dashboard  size 
+    int contentWidth = 1080;
+    int contentHeight = 640;
+    
+    // mouse controller
     int xMouse;
     int yMouse;
+    
+    // module list
+    EmployeeRegister mer = new EmployeeRegister();
+    EmployeeProfile mep = new EmployeeProfile();
+    FindEmployee mfe = new FindEmployee();
+    Departments md = new Departments();
+    
+
     /**
      * Creates new form Dashboard
      */
     public Dashboard() {
         initComponents();
+        
+        // image setters
         rsscalelabel.RSScaleLabel.setScaleLabel(icon_employees, "src/Assets/Images/employees.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(icon_performance, "src/Assets/Images/performance.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(icon_departments, "src/Assets/Images/depts.png");
@@ -59,19 +72,22 @@ public class Dashboard extends javax.swing.JFrame {
         btn_profile = new javax.swing.JPanel();
         txt_btn_profile = new javax.swing.JLabel();
         icon_profile = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        herobar = new javax.swing.JPanel();
+        displaycontent = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
+        setName("dashboard"); // NOI18N
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(51, 255, 0));
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setMinimumSize(new java.awt.Dimension(1280, 720));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
 
         header.setBackground(new java.awt.Color(255, 255, 255));
         header.setMaximumSize(new java.awt.Dimension(720, 35));
@@ -87,7 +103,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        btn_close.setBackground(SetColor.COPPER_RED);
+        btn_close.setBackground(ColorScheme.SetColor.COPPER_RED);
         btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_close.setMinimumSize(new java.awt.Dimension(25, 25));
 
@@ -137,20 +153,25 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        content.setBackground(SetColor.COSMIC_LATE);
+        content.setBackground(ColorScheme.SetColor.COSMIC_LATE);
         content.setPreferredSize(new java.awt.Dimension(1280, 685));
 
-        sidebar.setBackground(SetColor.EGGSHELL);
+        sidebar.setBackground(ColorScheme.SetColor.EGGSHELL);
         sidebar.setPreferredSize(new java.awt.Dimension(200, 685));
 
-        btn_employees.setBackground(SetColor.DESERT_SAND);
+        btn_employees.setBackground(ColorScheme.SetColor.DESERT_SAND);
         btn_employees.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_employees.setPreferredSize(new java.awt.Dimension(150, 35));
 
         txt_btn_employees.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
-        txt_btn_employees.setForeground(SetColor.UMBER);
+        txt_btn_employees.setForeground(ColorScheme.SetColor.UMBER);
         txt_btn_employees.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txt_btn_employees.setText("Empleados");
+        txt_btn_employees.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txt_btn_employeesMouseClicked(evt);
+            }
+        });
 
         icon_employees.setText("jLabel3");
         icon_employees.setPreferredSize(new java.awt.Dimension(24, 24));
@@ -175,12 +196,12 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btn_performance.setBackground(SetColor.DESERT_SAND);
+        btn_performance.setBackground(ColorScheme.SetColor.DESERT_SAND);
         btn_performance.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_performance.setPreferredSize(new java.awt.Dimension(150, 35));
 
         txt_btn_performance.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
-        txt_btn_performance.setForeground(SetColor.UMBER);
+        txt_btn_performance.setForeground(ColorScheme.SetColor.UMBER);
         txt_btn_performance.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txt_btn_performance.setText("Rendimiento");
 
@@ -207,12 +228,17 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btn_departments.setBackground(SetColor.DESERT_SAND);
+        btn_departments.setBackground(ColorScheme.SetColor.DESERT_SAND);
         btn_departments.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_departments.setPreferredSize(new java.awt.Dimension(150, 35));
+        btn_departments.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_departmentsMouseClicked(evt);
+            }
+        });
 
         txt_btn_departments.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
-        txt_btn_departments.setForeground(SetColor.UMBER);
+        txt_btn_departments.setForeground(ColorScheme.SetColor.UMBER);
         txt_btn_departments.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txt_btn_departments.setText("Departamentos");
 
@@ -239,12 +265,12 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btn_reports.setBackground(SetColor.DESERT_SAND);
+        btn_reports.setBackground(ColorScheme.SetColor.DESERT_SAND);
         btn_reports.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_reports.setPreferredSize(new java.awt.Dimension(150, 35));
 
         txt_btn_reports.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
-        txt_btn_reports.setForeground(SetColor.UMBER);
+        txt_btn_reports.setForeground(ColorScheme.SetColor.UMBER);
         txt_btn_reports.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txt_btn_reports.setText("Reportes");
 
@@ -271,12 +297,12 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btn_projects.setBackground(SetColor.DESERT_SAND);
+        btn_projects.setBackground(ColorScheme.SetColor.DESERT_SAND);
         btn_projects.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_projects.setPreferredSize(new java.awt.Dimension(150, 35));
 
         txt_btn_projects.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
-        txt_btn_projects.setForeground(SetColor.UMBER);
+        txt_btn_projects.setForeground(ColorScheme.SetColor.UMBER);
         txt_btn_projects.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txt_btn_projects.setText("Proyectos");
 
@@ -303,12 +329,17 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btn_profile.setBackground(SetColor.DESERT_SAND);
+        btn_profile.setBackground(ColorScheme.SetColor.DESERT_SAND);
         btn_profile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_profile.setPreferredSize(new java.awt.Dimension(150, 35));
+        btn_profile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_profileMouseClicked(evt);
+            }
+        });
 
         txt_btn_profile.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
-        txt_btn_profile.setForeground(SetColor.UMBER);
+        txt_btn_profile.setForeground(ColorScheme.SetColor.UMBER);
         txt_btn_profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txt_btn_profile.setText("Perfil");
 
@@ -368,18 +399,32 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(349, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(SetColor.EGGSHELL);
-        jPanel2.setPreferredSize(new java.awt.Dimension(60, 45));
+        herobar.setBackground(ColorScheme.SetColor.EGGSHELL);
+        herobar.setPreferredSize(new java.awt.Dimension(60, 45));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout herobarLayout = new javax.swing.GroupLayout(herobar);
+        herobar.setLayout(herobarLayout);
+        herobarLayout.setHorizontalGroup(
+            herobarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1080, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        herobarLayout.setVerticalGroup(
+            herobarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 45, Short.MAX_VALUE)
+        );
+
+        displaycontent.setBackground(ColorScheme.SetColor.COSMIC_LATE);
+        displaycontent.setPreferredSize(new java.awt.Dimension(100, 520));
+
+        javax.swing.GroupLayout displaycontentLayout = new javax.swing.GroupLayout(displaycontent);
+        displaycontent.setLayout(displaycontentLayout);
+        displaycontentLayout.setHorizontalGroup(
+            displaycontentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        displaycontentLayout.setVerticalGroup(
+            displaycontentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
@@ -388,19 +433,20 @@ public class Dashboard extends javax.swing.JFrame {
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contentLayout.createSequentialGroup()
                 .addComponent(sidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(herobar, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
+                    .addComponent(displaycontent, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)))
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contentLayout.createSequentialGroup()
-                .addComponent(sidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, contentLayout.createSequentialGroup()
+                        .addComponent(herobar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(displaycontent, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE))
+                    .addComponent(sidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(contentLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -411,7 +457,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 1280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 1180, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -419,7 +465,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 679, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -432,11 +478,11 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
-        btn_close.setBackground(SetColor.CHESTNUT);
+        btn_close.setBackground(ColorScheme.SetColor.CHESTNUT);
     }//GEN-LAST:event_jLabel1MouseEntered
 
     private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
-        btn_close.setBackground(SetColor.COPPER_RED);
+        btn_close.setBackground(ColorScheme.SetColor.COPPER_RED);
     }//GEN-LAST:event_jLabel1MouseExited
 
     private void headerMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMouseDragged
@@ -449,6 +495,18 @@ public class Dashboard extends javax.swing.JFrame {
         xMouse = evt.getX();
         yMouse = evt.getY();
     }//GEN-LAST:event_headerMousePressed
+
+    private void txt_btn_employeesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_btn_employeesMouseClicked
+        ContentHandle.Panel.Show(displaycontent, mfe, contentWidth, contentHeight);
+    }//GEN-LAST:event_txt_btn_employeesMouseClicked
+
+    private void btn_profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_profileMouseClicked
+        ContentHandle.Panel.Show(displaycontent, mep, contentWidth, contentHeight);
+    }//GEN-LAST:event_btn_profileMouseClicked
+
+    private void btn_departmentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_departmentsMouseClicked
+        ContentHandle.Panel.Show(displaycontent, md, contentWidth, contentHeight);
+    }//GEN-LAST:event_btn_departmentsMouseClicked
 
     /**
      * @param args the command line arguments
@@ -494,7 +552,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel btn_projects;
     private javax.swing.JPanel btn_reports;
     private javax.swing.JPanel content;
+    private javax.swing.JPanel displaycontent;
     private javax.swing.JPanel header;
+    private javax.swing.JPanel herobar;
     private javax.swing.JLabel icon_departments;
     private javax.swing.JLabel icon_employees;
     private javax.swing.JLabel icon_performance;
@@ -503,7 +563,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel icon_reports;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel sidebar;
     private javax.swing.JLabel txt_btn_departments;
     private javax.swing.JLabel txt_btn_employees;
