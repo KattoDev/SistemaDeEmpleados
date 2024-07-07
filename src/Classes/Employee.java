@@ -12,7 +12,6 @@ public class Employee {
     public String checkinTime;
     public String checkoutTime;
 
-
     public void Register(){}
     public void ShowInfo(){}
     public void UpdateInformation(){}
