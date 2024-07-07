@@ -4,8 +4,6 @@
  */
 package GUI;
 
-import GUI.EmployeeRegister;
-
 /**
  *
  * @author Kris
@@ -333,20 +331,11 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_usernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_usernameFocusGained
-        if("usuario:".equals(txt_username.getText().toLowerCase())){
-            txt_username.setForeground(ColorScheme.SetColor.UMBER);
-            txt_username.setText("");
-        }
+        TxtField.Focus.Gain(txt_username, "usuario:");
     }//GEN-LAST:event_txt_usernameFocusGained
 
     private void txt_usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_usernameFocusLost
-        if(txt_username.getText().isBlank()){
-            txt_username.setForeground(ColorScheme.SetColor.ROSE_TAUPE);
-            txt_username.setText("Usuario:");
-        }
-        else{
-            txt_username.setForeground(ColorScheme.SetColor.UMBER);
-        }
+        TxtField.Focus.Lost(txt_username, "Usuario:");
     }//GEN-LAST:event_txt_usernameFocusLost
 
     private void txt_passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_passwordFocusGained
