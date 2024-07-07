@@ -1,17 +1,14 @@
 # DESCRIPCIÓN DEL PROYECTO
 
 ### Nombre del desarrollador
-Kristopher Alexis Verjel Rincón
-
-[Contactar con el aprendiz](mailto:christian.verjel@soy.sena.edu.co)
+[Kristopher Alexis Verjel Rincón](mailto:christian.verjel@soy.sena.edu.co)
 
 ### Instructor líder
 Mgrt. Yesica Paola Carrascal Quintero
 
----
 
-## Sistema de Empleados
-[ir al prototipo de figma](https://www.figma.com/proto/NvR5mXWVP5miLtQlZYLYRy/Untitled?node-id=1-2&t=OZ5Wwr5xMCDCCAeD-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2)
+
+# Sistema de Empleados
 
 Desarrolle un sistema de gestión de empleados en Java que cumpla con los siguientes requerimientos funcionales:
 
@@ -47,4 +44,18 @@ El sistema debe generar informes y estadísticas sobre el rendimiento de los emp
 ### 10. Autenticación y autorización:
 El sistema debe implementar un mecanismo de autenticación y autorización para garantizar que solo los usuarios registrados y autorizados puedan acceder y realizar acciones en el sistema.
 
----
+
+
+# Assets
+### prototipado
+[figma](https://www.figma.com/proto/NvR5mXWVP5miLtQlZYLYRy/Untitled?node-id=1-2&t=OZ5Wwr5xMCDCCAeD-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2)
+
+### imagenes
+[iconos](https://boxicons.com/)
+
+### tipografias
+[BUNGEE](https://fonts.google.com/specimen/Bungee)
+
+### librerias
+[project handler - RitzzRiver](https://github.com/RitzzRiver/Project-handler)<br>
+[RSScaleLabel - RojeruSan](https://www.youtube.com/watch?v=iytTN_mzra4)
