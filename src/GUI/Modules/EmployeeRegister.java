@@ -1,19 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-package GUI;
+package GUI.Modules;
 
+import ComponentMaintainer.CM_Color;
 /**
- *
  * @author Kris
  */
-public class EmployeeProfile extends javax.swing.JPanel {
+public class EmployeeRegister extends javax.swing.JPanel {
 
     /**
      * Creates new form EmployeeRegister
      */
-    public EmployeeProfile() {
+    public EmployeeRegister() {
         initComponents();
     }
 
@@ -48,8 +44,8 @@ public class EmployeeProfile extends javax.swing.JPanel {
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
         jSeparator8 = new javax.swing.JSeparator();
-        btn_save = new javax.swing.JPanel();
-        txt_btn_save = new javax.swing.JLabel();
+        btn_register = new javax.swing.JPanel();
+        txt_btn_register = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1080, 640));
         setMinimumSize(new java.awt.Dimension(1080, 640));
@@ -218,7 +214,6 @@ public class EmployeeProfile extends javax.swing.JPanel {
         txt_position.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txt_position.setText("Cargo:");
         txt_position.setBorder(null);
-        txt_position.setEnabled(false);
         txt_position.setPreferredSize(new java.awt.Dimension(245, 30));
         txt_position.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -291,8 +286,6 @@ public class EmployeeProfile extends javax.swing.JPanel {
         txt_salary.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txt_salary.setText("Salario:");
         txt_salary.setBorder(null);
-        txt_salary.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        txt_salary.setEnabled(false);
         txt_salary.setPreferredSize(new java.awt.Dimension(245, 30));
         txt_salary.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -320,24 +313,24 @@ public class EmployeeProfile extends javax.swing.JPanel {
                 .addGap(22, 22, 22))
         );
 
-        btn_save.setBackground(ColorScheme.SetColor.DESERT_SAND);
-        btn_save.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_save.setPreferredSize(new java.awt.Dimension(150, 35));
+        btn_register.setBackground(ColorScheme.SetColor.DESERT_SAND);
+        btn_register.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_register.setPreferredSize(new java.awt.Dimension(150, 35));
 
-        txt_btn_save.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
-        txt_btn_save.setForeground(ColorScheme.SetColor.UMBER);
-        txt_btn_save.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txt_btn_save.setText("Guardar");
+        txt_btn_register.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
+        txt_btn_register.setForeground(ColorScheme.SetColor.UMBER);
+        txt_btn_register.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txt_btn_register.setText("Registrar");
 
-        javax.swing.GroupLayout btn_saveLayout = new javax.swing.GroupLayout(btn_save);
-        btn_save.setLayout(btn_saveLayout);
-        btn_saveLayout.setHorizontalGroup(
-            btn_saveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txt_btn_save, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+        javax.swing.GroupLayout btn_registerLayout = new javax.swing.GroupLayout(btn_register);
+        btn_register.setLayout(btn_registerLayout);
+        btn_registerLayout.setHorizontalGroup(
+            btn_registerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txt_btn_register, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
         );
-        btn_saveLayout.setVerticalGroup(
-            btn_saveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txt_btn_save, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        btn_registerLayout.setVerticalGroup(
+            btn_registerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txt_btn_register, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout EmployeeRegisterContainerLayout = new javax.swing.GroupLayout(EmployeeRegisterContainer);
@@ -359,7 +352,7 @@ public class EmployeeProfile extends javax.swing.JPanel {
                                 .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(salaryContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btn_save, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btn_register, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(nameContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
@@ -406,7 +399,7 @@ public class EmployeeProfile extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btn_save, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_register, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(110, Short.MAX_VALUE))
         );
 
@@ -474,7 +467,7 @@ public class EmployeeProfile extends javax.swing.JPanel {
     private javax.swing.JPanel EmployeeRegisterContainer;
     private javax.swing.JPanel addressContainer;
     private javax.swing.JPanel birthdayContainer;
-    private javax.swing.JPanel btn_save;
+    private javax.swing.JPanel btn_register;
     private javax.swing.JPanel email_Container;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -490,7 +483,7 @@ public class EmployeeProfile extends javax.swing.JPanel {
     private javax.swing.JPanel salaryContainer;
     private javax.swing.JTextField txt_address;
     private javax.swing.JTextField txt_birthday;
-    private javax.swing.JLabel txt_btn_save;
+    private javax.swing.JLabel txt_btn_register;
     private javax.swing.JTextField txt_email;
     private javax.swing.JTextField txt_name;
     private javax.swing.JTextField txt_phoneNumber;

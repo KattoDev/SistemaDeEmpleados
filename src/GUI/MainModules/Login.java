@@ -1,11 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package GUI;
+package GUI.MainModules;
 
+import ComponentMaintainer.CM_Color;
 /**
- *
  * @author Kris
  */
 
@@ -63,12 +59,12 @@ public class Login extends javax.swing.JFrame {
         content.setBackground(new java.awt.Color(255, 255, 255));
         content.setPreferredSize(new java.awt.Dimension(520, 445));
 
-        usernameContainer.setBackground(ColorScheme.SetColor.DESERT_SAND);
+        usernameContainer.setBackground(CM_Color.Button());
         usernameContainer.setPreferredSize(new java.awt.Dimension(280, 30));
 
-        txt_username.setBackground(ColorScheme.SetColor.DESERT_SAND);
+        txt_username.setBackground(CM_Color.Button());
         txt_username.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
-        txt_username.setForeground(ColorScheme.SetColor.UMBER);
+        txt_username.setForeground(CM_Color.Text());
         txt_username.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txt_username.setText("Usuario:");
         txt_username.setBorder(null);
@@ -106,11 +102,11 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(ico_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        passwordContainer.setBackground(ColorScheme.SetColor.DESERT_SAND);
+        passwordContainer.setBackground(CM_Color.Button());
         passwordContainer.setPreferredSize(new java.awt.Dimension(280, 35));
 
-        txt_password.setBackground(ColorScheme.SetColor.DESERT_SAND);
-        txt_password.setForeground(ColorScheme.SetColor.UMBER);
+        txt_password.setBackground(CM_Color.Button());
+        txt_password.setForeground(CM_Color.Text());
         txt_password.setText("12345678");
         txt_password.setBorder(null);
         txt_password.setPreferredSize(new java.awt.Dimension(245, 35));
@@ -147,7 +143,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        loginContainer.setBackground(ColorScheme.SetColor.DESERT_SAND);
+        loginContainer.setBackground(CM_Color.Button());
         loginContainer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         loginContainer.setMaximumSize(new java.awt.Dimension(280, 30));
         loginContainer.setMinimumSize(new java.awt.Dimension(280, 30));
@@ -159,7 +155,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         lbl_login.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
-        lbl_login.setForeground(ColorScheme.SetColor.UMBER);
+        lbl_login.setForeground(CM_Color.Text());
         lbl_login.setText("Iniciar Sesion");
 
         javax.swing.GroupLayout loginContainerLayout = new javax.swing.GroupLayout(loginContainer);
@@ -169,7 +165,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(loginContainerLayout.createSequentialGroup()
                 .addGap(81, 81, 81)
                 .addComponent(lbl_login)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         loginContainerLayout.setVerticalGroup(
             loginContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,7 +176,7 @@ public class Login extends javax.swing.JFrame {
         );
 
         lbl_appName.setFont(new java.awt.Font("Bungee", 1, 24)); // NOI18N
-        lbl_appName.setForeground(ColorScheme.SetColor.UMBER);
+        lbl_appName.setForeground(CM_Color.Text());
         lbl_appName.setText("Sistema de empleados");
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
@@ -218,7 +214,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(loginContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
 
         header.setBackground(new java.awt.Color(255, 255, 255));
@@ -234,7 +230,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        btn_close.setBackground(ColorScheme.SetColor.COPPER_RED);
+        btn_close.setBackground(CM_Color.CloseButton());
         btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_close.setMinimumSize(new java.awt.Dimension(25, 25));
 
@@ -351,11 +347,11 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_loginContainerMouseClicked
 
     private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
-        btn_close.setBackground(ColorScheme.SetColor.CHESTNUT);
+        btn_close.setBackground(CM_Color.CloseButtonHover());
     }//GEN-LAST:event_jLabel1MouseEntered
 
     private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
-        btn_close.setBackground(ColorScheme.SetColor.COPPER_RED);
+        btn_close.setBackground(CM_Color.CloseButton());
     }//GEN-LAST:event_jLabel1MouseExited
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked

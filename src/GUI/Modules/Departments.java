@@ -1,11 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-package GUI;
+package GUI.Modules;
 
+import ComponentMaintainer.*;
 /**
- *
  * @author Kris
  */
 public class Departments extends javax.swing.JPanel {
@@ -50,21 +46,27 @@ public class Departments extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1080, 640));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        EmployeeRegisterContainer.setBackground(ColorScheme.SetColor.COSMIC_LATE);
+        EmployeeRegisterContainer.setBackground(CM_Color.Background());
         EmployeeRegisterContainer.setMaximumSize(new java.awt.Dimension(1080, 640));
         EmployeeRegisterContainer.setMinimumSize(new java.awt.Dimension(1080, 640));
         EmployeeRegisterContainer.setPreferredSize(new java.awt.Dimension(1080, 640));
 
         lbl_moduleName.setFont(new java.awt.Font("Bungee", 0, 24)); // NOI18N
+        lbl_moduleName.setForeground(CM_Color.Text());
         lbl_moduleName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_moduleName.setText("Departamentos");
 
         btn_newDept.setBackground(ColorScheme.SetColor.DESERT_SAND);
         btn_newDept.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_newDept.setPreferredSize(new java.awt.Dimension(150, 35));
+        btn_newDept.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_newDeptMouseClicked(evt);
+            }
+        });
 
         txt_btn_newDept.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
-        txt_btn_newDept.setForeground(ColorScheme.SetColor.UMBER);
+        txt_btn_newDept.setForeground(CM_Color.Text());
         txt_btn_newDept.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txt_btn_newDept.setText("Nuevo departamento");
         txt_btn_newDept.setPreferredSize(new java.awt.Dimension(70, 30));
@@ -83,10 +85,10 @@ public class Departments extends javax.swing.JPanel {
             .addComponent(txt_btn_newDept, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jTable1.setBackground(ColorScheme.SetColor.DESERT_SAND);
+        jTable1.setBackground(CM_Color.Button());
         jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTable1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTable1.setForeground(ColorScheme.SetColor.UMBER);
+        jTable1.setForeground(CM_Color.Text());
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -152,6 +154,11 @@ public class Departments extends javax.swing.JPanel {
 
         add(EmployeeRegisterContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_newDeptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_newDeptMouseClicked
+        CM_Views.DepartmentsModule.NewDepartment().setVisible(true);
+        
+    }//GEN-LAST:event_btn_newDeptMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,19 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-package GUI;
+package GUI.Modules;
 
+import ComponentMaintainer.CM_Color;
 /**
- *
  * @author Kris
  */
-public class EmployeeRegister extends javax.swing.JPanel {
+public class EmployeeProfile extends javax.swing.JPanel {
 
     /**
      * Creates new form EmployeeRegister
      */
-    public EmployeeRegister() {
+    public EmployeeProfile() {
         initComponents();
     }
 
@@ -39,38 +35,36 @@ public class EmployeeRegister extends javax.swing.JPanel {
         txt_position = new javax.swing.JTextField();
         phoneNumberContainer = new javax.swing.JPanel();
         txt_phoneNumber = new javax.swing.JTextField();
-        salaryContainer = new javax.swing.JPanel();
-        txt_salary = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
-        jSeparator8 = new javax.swing.JSeparator();
-        btn_register = new javax.swing.JPanel();
-        txt_btn_register = new javax.swing.JLabel();
+        btn_save = new javax.swing.JPanel();
+        txt_btn_save = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1080, 640));
         setMinimumSize(new java.awt.Dimension(1080, 640));
         setPreferredSize(new java.awt.Dimension(1080, 640));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        EmployeeRegisterContainer.setBackground(ColorScheme.SetColor.COSMIC_LATE);
+        EmployeeRegisterContainer.setBackground(CM_Color.Background());
         EmployeeRegisterContainer.setMaximumSize(new java.awt.Dimension(1080, 640));
         EmployeeRegisterContainer.setMinimumSize(new java.awt.Dimension(1080, 640));
         EmployeeRegisterContainer.setPreferredSize(new java.awt.Dimension(1080, 640));
 
         lbl_moduleName.setFont(new java.awt.Font("Bungee", 0, 24)); // NOI18N
+        lbl_moduleName.setForeground(CM_Color.Text());
         lbl_moduleName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_moduleName.setText("Registro de empleados");
+        lbl_moduleName.setText("Perfil de empleado");
 
-        nameContainer.setBackground(ColorScheme.SetColor.DESERT_SAND);
+        nameContainer.setBackground(CM_Color.Button());
         nameContainer.setPreferredSize(new java.awt.Dimension(280, 30));
 
-        txt_name.setBackground(ColorScheme.SetColor.DESERT_SAND);
+        txt_name.setBackground(CM_Color.Button());
         txt_name.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
-        txt_name.setForeground(ColorScheme.SetColor.UMBER);
+        txt_name.setForeground(CM_Color.CloseButtonHover());
         txt_name.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txt_name.setText("Usuario:");
         txt_name.setBorder(null);
@@ -101,12 +95,12 @@ public class EmployeeRegister extends javax.swing.JPanel {
                 .addGap(22, 22, 22))
         );
 
-        addressContainer.setBackground(ColorScheme.SetColor.DESERT_SAND);
+        addressContainer.setBackground(CM_Color.Button());
         addressContainer.setPreferredSize(new java.awt.Dimension(280, 30));
 
-        txt_address.setBackground(ColorScheme.SetColor.DESERT_SAND);
+        txt_address.setBackground(CM_Color.Button());
         txt_address.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
-        txt_address.setForeground(ColorScheme.SetColor.UMBER);
+        txt_address.setForeground(CM_Color.CloseButtonHover());
         txt_address.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txt_address.setText("Dirección:");
         txt_address.setBorder(null);
@@ -137,12 +131,12 @@ public class EmployeeRegister extends javax.swing.JPanel {
                 .addGap(22, 22, 22))
         );
 
-        birthdayContainer.setBackground(ColorScheme.SetColor.DESERT_SAND);
+        birthdayContainer.setBackground(CM_Color.Button());
         birthdayContainer.setPreferredSize(new java.awt.Dimension(280, 30));
 
-        txt_birthday.setBackground(ColorScheme.SetColor.DESERT_SAND);
+        txt_birthday.setBackground(CM_Color.Button());
         txt_birthday.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
-        txt_birthday.setForeground(ColorScheme.SetColor.UMBER);
+        txt_birthday.setForeground(CM_Color.CloseButtonHover());
         txt_birthday.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txt_birthday.setText("Fecha de nacimiento:");
         txt_birthday.setBorder(null);
@@ -173,12 +167,12 @@ public class EmployeeRegister extends javax.swing.JPanel {
                 .addGap(22, 22, 22))
         );
 
-        email_Container.setBackground(ColorScheme.SetColor.DESERT_SAND);
+        email_Container.setBackground(CM_Color.Button());
         email_Container.setPreferredSize(new java.awt.Dimension(280, 30));
 
-        txt_email.setBackground(ColorScheme.SetColor.DESERT_SAND);
+        txt_email.setBackground(CM_Color.Button());
         txt_email.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
-        txt_email.setForeground(ColorScheme.SetColor.UMBER);
+        txt_email.setForeground(CM_Color.CloseButtonHover());
         txt_email.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txt_email.setText("Correo electronico:");
         txt_email.setBorder(null);
@@ -209,15 +203,16 @@ public class EmployeeRegister extends javax.swing.JPanel {
                 .addGap(22, 22, 22))
         );
 
-        position_Container.setBackground(ColorScheme.SetColor.DESERT_SAND);
+        position_Container.setBackground(CM_Color.Button());
         position_Container.setPreferredSize(new java.awt.Dimension(280, 30));
 
         txt_position.setBackground(ColorScheme.SetColor.DESERT_SAND);
         txt_position.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
-        txt_position.setForeground(ColorScheme.SetColor.UMBER);
+        txt_position.setForeground(CM_Color.CloseButtonHover());
         txt_position.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txt_position.setText("Cargo:");
         txt_position.setBorder(null);
+        txt_position.setEnabled(false);
         txt_position.setPreferredSize(new java.awt.Dimension(245, 30));
         txt_position.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -245,12 +240,12 @@ public class EmployeeRegister extends javax.swing.JPanel {
                 .addGap(22, 22, 22))
         );
 
-        phoneNumberContainer.setBackground(ColorScheme.SetColor.DESERT_SAND);
+        phoneNumberContainer.setBackground(CM_Color.Button());
         phoneNumberContainer.setPreferredSize(new java.awt.Dimension(280, 30));
 
-        txt_phoneNumber.setBackground(ColorScheme.SetColor.DESERT_SAND);
+        txt_phoneNumber.setBackground(CM_Color.Button());
         txt_phoneNumber.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
-        txt_phoneNumber.setForeground(ColorScheme.SetColor.UMBER);
+        txt_phoneNumber.setForeground(CM_Color.CloseButtonHover());
         txt_phoneNumber.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txt_phoneNumber.setText("Número telefonico:");
         txt_phoneNumber.setBorder(null);
@@ -281,60 +276,24 @@ public class EmployeeRegister extends javax.swing.JPanel {
                 .addGap(22, 22, 22))
         );
 
-        salaryContainer.setBackground(ColorScheme.SetColor.DESERT_SAND);
-        salaryContainer.setPreferredSize(new java.awt.Dimension(280, 30));
+        btn_save.setBackground(CM_Color.Button());
+        btn_save.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_save.setPreferredSize(new java.awt.Dimension(150, 35));
 
-        txt_salary.setBackground(ColorScheme.SetColor.DESERT_SAND);
-        txt_salary.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
-        txt_salary.setForeground(ColorScheme.SetColor.UMBER);
-        txt_salary.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txt_salary.setText("Salario:");
-        txt_salary.setBorder(null);
-        txt_salary.setPreferredSize(new java.awt.Dimension(245, 30));
-        txt_salary.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txt_salaryFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_salaryFocusLost(evt);
-            }
-        });
+        txt_btn_save.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
+        txt_btn_save.setForeground(CM_Color.Text());
+        txt_btn_save.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txt_btn_save.setText("Guardar");
 
-        javax.swing.GroupLayout salaryContainerLayout = new javax.swing.GroupLayout(salaryContainer);
-        salaryContainer.setLayout(salaryContainerLayout);
-        salaryContainerLayout.setHorizontalGroup(
-            salaryContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(salaryContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txt_salary, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
-                .addContainerGap())
+        javax.swing.GroupLayout btn_saveLayout = new javax.swing.GroupLayout(btn_save);
+        btn_save.setLayout(btn_saveLayout);
+        btn_saveLayout.setHorizontalGroup(
+            btn_saveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txt_btn_save, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
         );
-        salaryContainerLayout.setVerticalGroup(
-            salaryContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, salaryContainerLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(txt_salary, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
-        );
-
-        btn_register.setBackground(ColorScheme.SetColor.DESERT_SAND);
-        btn_register.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_register.setPreferredSize(new java.awt.Dimension(150, 35));
-
-        txt_btn_register.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
-        txt_btn_register.setForeground(ColorScheme.SetColor.UMBER);
-        txt_btn_register.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txt_btn_register.setText("Registrar");
-
-        javax.swing.GroupLayout btn_registerLayout = new javax.swing.GroupLayout(btn_register);
-        btn_register.setLayout(btn_registerLayout);
-        btn_registerLayout.setHorizontalGroup(
-            btn_registerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txt_btn_register, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-        );
-        btn_registerLayout.setVerticalGroup(
-            btn_registerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txt_btn_register, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        btn_saveLayout.setVerticalGroup(
+            btn_saveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txt_btn_save, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout EmployeeRegisterContainerLayout = new javax.swing.GroupLayout(EmployeeRegisterContainer);
@@ -343,6 +302,9 @@ public class EmployeeRegister extends javax.swing.JPanel {
             EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
                 .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_save, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(position_Container, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(email_Container, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(phoneNumberContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -352,21 +314,14 @@ public class EmployeeRegister extends javax.swing.JPanel {
                             .addComponent(lbl_moduleName))
                         .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
                             .addGap(60, 60, 60)
-                            .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(salaryContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btn_register, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nameContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
-                                    .addComponent(jSeparator2)
-                                    .addComponent(addressContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
-                                    .addComponent(jSeparator3)
-                                    .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSeparator5)
-                                    .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(birthdayContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE))))))
+                            .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(nameContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+                                .addComponent(jSeparator2)
+                                .addComponent(addressContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+                                .addComponent(jSeparator3)
+                                .addComponent(jSeparator5)
+                                .addComponent(birthdayContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+                                .addComponent(jSeparator4)))))
                 .addContainerGap(468, Short.MAX_VALUE))
         );
         EmployeeRegisterContainerLayout.setVerticalGroup(
@@ -399,12 +354,8 @@ public class EmployeeRegister extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(salaryContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_register, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addComponent(btn_save, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(166, Short.MAX_VALUE))
         );
 
         add(EmployeeRegisterContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -458,20 +409,12 @@ public class EmployeeRegister extends javax.swing.JPanel {
         TxtField.Focus.Lost(txt_position, "Cargo:");
     }//GEN-LAST:event_txt_positionFocusLost
 
-    private void txt_salaryFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_salaryFocusGained
-        TxtField.Focus.Gain(txt_salary, "salario:");
-    }//GEN-LAST:event_txt_salaryFocusGained
-
-    private void txt_salaryFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_salaryFocusLost
-        TxtField.Focus.Lost(txt_salary, "Salario:");
-    }//GEN-LAST:event_txt_salaryFocusLost
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel EmployeeRegisterContainer;
     private javax.swing.JPanel addressContainer;
     private javax.swing.JPanel birthdayContainer;
-    private javax.swing.JPanel btn_register;
+    private javax.swing.JPanel btn_save;
     private javax.swing.JPanel email_Container;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -479,19 +422,16 @@ public class EmployeeRegister extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JLabel lbl_moduleName;
     private javax.swing.JPanel nameContainer;
     private javax.swing.JPanel phoneNumberContainer;
     private javax.swing.JPanel position_Container;
-    private javax.swing.JPanel salaryContainer;
     private javax.swing.JTextField txt_address;
     private javax.swing.JTextField txt_birthday;
-    private javax.swing.JLabel txt_btn_register;
+    private javax.swing.JLabel txt_btn_save;
     private javax.swing.JTextField txt_email;
     private javax.swing.JTextField txt_name;
     private javax.swing.JTextField txt_phoneNumber;
     private javax.swing.JTextField txt_position;
-    private javax.swing.JTextField txt_salary;
     // End of variables declaration//GEN-END:variables
 }

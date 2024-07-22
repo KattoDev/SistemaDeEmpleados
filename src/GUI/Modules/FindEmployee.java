@@ -1,11 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-package GUI;
+package GUI.Modules;
 
+import ComponentMaintainer.CM_Color;
 /**
- *
  * @author Kris
  */
 public class FindEmployee extends javax.swing.JPanel {
@@ -53,22 +49,25 @@ public class FindEmployee extends javax.swing.JPanel {
         btn_filter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_filter.setPreferredSize(new java.awt.Dimension(150, 35));
 
-        javax.swing.GroupLayout btn_filterLayout = new javax.swing.GroupLayout(btn_filter);
-        btn_filter.setLayout(btn_filterLayout);
-        btn_filterLayout.setHorizontalGroup(
-            btn_filterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
-        );
-        btn_filterLayout.setVerticalGroup(
-            btn_filterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-        );
-
         txt_btn_filter.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
         txt_btn_filter.setForeground(ColorScheme.SetColor.UMBER);
         txt_btn_filter.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txt_btn_filter.setText("Filtrar");
         txt_btn_filter.setPreferredSize(new java.awt.Dimension(70, 30));
+
+        javax.swing.GroupLayout btn_filterLayout = new javax.swing.GroupLayout(btn_filter);
+        btn_filter.setLayout(btn_filterLayout);
+        btn_filterLayout.setHorizontalGroup(
+            btn_filterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btn_filterLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txt_btn_filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        btn_filterLayout.setVerticalGroup(
+            btn_filterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txt_btn_filter, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         jComboBox1.setBackground(ColorScheme.SetColor.EGGSHELL);
         jComboBox1.setForeground(ColorScheme.SetColor.DESERT_SAND);
@@ -127,23 +126,18 @@ public class FindEmployee extends javax.swing.JPanel {
         EmployeeRegisterContainerLayout.setHorizontalGroup(
             EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
                 .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
-                        .addGap(462, 462, 462)
-                        .addComponent(btn_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE)
-                            .addComponent(lbl_moduleName))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE)
+                    .addComponent(lbl_moduleName))
                 .addGap(135, 135, 135))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EmployeeRegisterContainerLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(txt_btn_filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(103, 103, 103)
+                .addComponent(btn_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75))
         );
         EmployeeRegisterContainerLayout.setVerticalGroup(
@@ -151,16 +145,18 @@ public class FindEmployee extends javax.swing.JPanel {
             .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(lbl_moduleName)
-                .addGap(9, 9, 9)
-                .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_btn_filter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(22, 22, 22)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         add(EmployeeRegisterContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
