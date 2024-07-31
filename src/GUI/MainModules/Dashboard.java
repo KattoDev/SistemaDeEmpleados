@@ -10,14 +10,18 @@ public class Dashboard extends javax.swing.JFrame {
     int contentWidth = 1080;
     int contentHeight = 640;
     
+    // USER ID
+    public static String sessionID;
+
     // mouse controller
     int xMouse;
-    int yMouse;
-    
+    int yMouse; 
     /**
      * Creates new form Dashboard
      */
-    public Dashboard() {
+    
+    public Dashboard(String ID) {
+        this.sessionID = ID;
         initComponents();
         
         // image setters
@@ -26,6 +30,9 @@ public class Dashboard extends javax.swing.JFrame {
         rsscalelabel.RSScaleLabel.setScaleLabel(icon_reports, "src/Assets/Images/reports.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(icon_projects, "src/Assets/Images/projects.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(icon_profile, "src/Assets/Images/profile.png");
+        
+                 System.out.println("ID: " + sessionID);
+        
     }
 
     /**
@@ -447,10 +454,11 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void txt_btn_employeesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_btn_employeesMouseClicked
         ContentHandle.Panel.Show(displaycontent, CM_Views.EmployeesModule.FindEmployee(), contentWidth, contentHeight);
+        System.out.println("SESION ID: " + sessionID);
     }//GEN-LAST:event_txt_btn_employeesMouseClicked
 
     private void btn_profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_profileMouseClicked
-        ContentHandle.Panel.Show(displaycontent, CM_Views.EmployeeProfileModule.EmployeeProfile(), contentWidth, contentHeight);
+        ContentHandle.Panel.Show(displaycontent, CM_Views.EmployeeProfileModule.EmployeeProfile(sessionID), contentWidth, contentHeight);
     }//GEN-LAST:event_btn_profileMouseClicked
 
     private void btn_departmentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_departmentsMouseClicked
@@ -487,7 +495,7 @@ public class Dashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Dashboard().setVisible(true);
+                new Dashboard(sessionID).setVisible(true);
             }
         });
     }

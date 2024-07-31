@@ -157,7 +157,6 @@ public class Departments extends javax.swing.JPanel {
 
     private void btn_newDeptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_newDeptMouseClicked
         CM_Views.DepartmentsModule.NewDepartment().setVisible(true);
-        
     }//GEN-LAST:event_btn_newDeptMouseClicked
 
 

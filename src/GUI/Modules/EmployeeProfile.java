@@ -1,16 +1,46 @@
 package GUI.Modules;
 
 import ComponentMaintainer.CM_Color;
+import GUI.MainModules.Dashboard;
+import javax.swing.JOptionPane;
+import ComponentMaintainer.DatabaseConection;
 /**
  * @author Kris
  */
 public class EmployeeProfile extends javax.swing.JPanel {
-
+    public  String sessionID;
     /**
      * Creates new form EmployeeRegister
+     * @param id the id from the user
      */
-    public EmployeeProfile() {
+    public EmployeeProfile(String id) {
+        this.sessionID = id;
         initComponents();
+        DatabaseConection dbc = new DatabaseConection();
+        dbc.connectDatabase();
+        System.out.println("select * from users where email = \"" + sessionID + "\"");
+
+        try {
+                dbc.resultSet = dbc.statement.executeQuery("select * from users where id = \"" + sessionID + "\"");
+
+            if (dbc.resultSet.next()) {
+                // name, address, birthday, phoneNumber, email, position, 
+                txt_name.setText(dbc.resultSet.getString("name"));
+                txt_address.setText(dbc.resultSet.getString("address"));
+                txt_birthday.setText(dbc.resultSet.getString("birthday"));
+                txt_phoneNumber.setText(dbc.resultSet.getString("phoneNumber"));
+                txt_email.setText(dbc.resultSet.getString("email"));
+                txt_position.setText(dbc.resultSet.getString("position"));
+                
+                } else {
+
+                    System.out.println("ERROR AL RECIBIR DATOS");
+
+                }
+            }
+        catch (Exception e) {
+            System.err.println("ERROR " + e);
+        }
     }
 
     /**
@@ -66,7 +96,6 @@ public class EmployeeProfile extends javax.swing.JPanel {
         txt_name.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
         txt_name.setForeground(CM_Color.CloseButtonHover());
         txt_name.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txt_name.setText("Usuario:");
         txt_name.setBorder(null);
         txt_name.setPreferredSize(new java.awt.Dimension(245, 30));
         txt_name.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -102,7 +131,6 @@ public class EmployeeProfile extends javax.swing.JPanel {
         txt_address.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
         txt_address.setForeground(CM_Color.CloseButtonHover());
         txt_address.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txt_address.setText("Dirección:");
         txt_address.setBorder(null);
         txt_address.setPreferredSize(new java.awt.Dimension(245, 30));
         txt_address.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -138,7 +166,6 @@ public class EmployeeProfile extends javax.swing.JPanel {
         txt_birthday.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
         txt_birthday.setForeground(CM_Color.CloseButtonHover());
         txt_birthday.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txt_birthday.setText("Fecha de nacimiento:");
         txt_birthday.setBorder(null);
         txt_birthday.setPreferredSize(new java.awt.Dimension(245, 30));
         txt_birthday.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -174,7 +201,6 @@ public class EmployeeProfile extends javax.swing.JPanel {
         txt_email.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
         txt_email.setForeground(CM_Color.CloseButtonHover());
         txt_email.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txt_email.setText("Correo electronico:");
         txt_email.setBorder(null);
         txt_email.setPreferredSize(new java.awt.Dimension(245, 30));
         txt_email.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -210,7 +236,6 @@ public class EmployeeProfile extends javax.swing.JPanel {
         txt_position.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
         txt_position.setForeground(CM_Color.CloseButtonHover());
         txt_position.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txt_position.setText("Cargo:");
         txt_position.setBorder(null);
         txt_position.setEnabled(false);
         txt_position.setPreferredSize(new java.awt.Dimension(245, 30));
@@ -247,7 +272,6 @@ public class EmployeeProfile extends javax.swing.JPanel {
         txt_phoneNumber.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
         txt_phoneNumber.setForeground(CM_Color.CloseButtonHover());
         txt_phoneNumber.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txt_phoneNumber.setText("Número telefonico:");
         txt_phoneNumber.setBorder(null);
         txt_phoneNumber.setPreferredSize(new java.awt.Dimension(245, 30));
         txt_phoneNumber.addFocusListener(new java.awt.event.FocusAdapter() {
