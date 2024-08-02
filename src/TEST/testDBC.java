@@ -1,6 +1,8 @@
-package ComponentMaintainer;
+package TEST;
 
-public class test {
+import ComponentMaintainer.DatabaseConection;
+
+public class testDBC {
 
     public static void main(String[] args) {
          DatabaseConection dbc = new DatabaseConection();

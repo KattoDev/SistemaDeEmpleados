@@ -1,6 +1,8 @@
 package GUI.MainModules;
 
 import ComponentMaintainer.*;
+import javax.swing.JOptionPane;
+
 /**
  * @author Kris
  */
@@ -10,29 +12,29 @@ public class Dashboard extends javax.swing.JFrame {
     int contentWidth = 1080;
     int contentHeight = 640;
     
-    // USER ID
-    public static String sessionID;
+    CM_Messages messages = new CM_Messages();
+    DatabaseConection dbc = new DatabaseConection();
+    
 
     // mouse controller
     int xMouse;
     int yMouse; 
-    /**
-     * Creates new form Dashboard
-     */
-    
-    public Dashboard(String ID) {
-        this.sessionID = ID;
+
+    public Dashboard() {
         initComponents();
         
         // image setters
+        setIcons();
+        
+        System.out.println("ID: " + Login.actualSession.getId());
+    }
+
+    private void setIcons(){
         rsscalelabel.RSScaleLabel.setScaleLabel(icon_employees, "src/Assets/Images/employees.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(icon_departments, "src/Assets/Images/depts.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(icon_reports, "src/Assets/Images/reports.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(icon_projects, "src/Assets/Images/projects.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(icon_profile, "src/Assets/Images/profile.png");
-        
-                 System.out.println("ID: " + sessionID);
-        
     }
 
     /**
@@ -64,8 +66,13 @@ public class Dashboard extends javax.swing.JFrame {
         btn_profile = new javax.swing.JPanel();
         txt_btn_profile = new javax.swing.JLabel();
         icon_profile = new javax.swing.JLabel();
+        btn_logout = new javax.swing.JPanel();
+        txt_btn_logout = new javax.swing.JLabel();
         herobar = new javax.swing.JPanel();
         displaycontent = new javax.swing.JPanel();
+        btn_profile1 = new javax.swing.JPanel();
+        txt_btn_profile1 = new javax.swing.JLabel();
+        icon_profile1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de empleados - Dashboard");
@@ -326,6 +333,36 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btn_logout.setBackground(ColorScheme.SetColor.DESERT_SAND);
+        btn_logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_logout.setPreferredSize(new java.awt.Dimension(150, 35));
+        btn_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_logoutMouseClicked(evt);
+            }
+        });
+
+        txt_btn_logout.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
+        txt_btn_logout.setForeground(ColorScheme.SetColor.UMBER);
+        txt_btn_logout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txt_btn_logout.setText("Cerrar sesión");
+        txt_btn_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txt_btn_logoutMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btn_logoutLayout = new javax.swing.GroupLayout(btn_logout);
+        btn_logout.setLayout(btn_logoutLayout);
+        btn_logoutLayout.setHorizontalGroup(
+            btn_logoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txt_btn_logout, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+        );
+        btn_logoutLayout.setVerticalGroup(
+            btn_logoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txt_btn_logout, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout sidebarLayout = new javax.swing.GroupLayout(sidebar);
         sidebar.setLayout(sidebarLayout);
         sidebarLayout.setHorizontalGroup(
@@ -337,7 +374,8 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(btn_departments, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_reports, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_projects, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_logout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         sidebarLayout.setVerticalGroup(
@@ -353,7 +391,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(btn_projects, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(397, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 349, Short.MAX_VALUE)
+                .addComponent(btn_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         herobar.setBackground(ColorScheme.SetColor.EGGSHELL);
@@ -384,6 +424,43 @@ public class Dashboard extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        btn_profile1.setBackground(ColorScheme.SetColor.DESERT_SAND);
+        btn_profile1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_profile1.setPreferredSize(new java.awt.Dimension(150, 35));
+        btn_profile1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_profile1MouseClicked(evt);
+            }
+        });
+
+        txt_btn_profile1.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
+        txt_btn_profile1.setForeground(ColorScheme.SetColor.UMBER);
+        txt_btn_profile1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txt_btn_profile1.setText("Perfil");
+
+        icon_profile1.setText("jLabel3");
+        icon_profile1.setPreferredSize(new java.awt.Dimension(24, 24));
+
+        javax.swing.GroupLayout btn_profile1Layout = new javax.swing.GroupLayout(btn_profile1);
+        btn_profile1.setLayout(btn_profile1Layout);
+        btn_profile1Layout.setHorizontalGroup(
+            btn_profile1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btn_profile1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(icon_profile1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txt_btn_profile1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
+        btn_profile1Layout.setVerticalGroup(
+            btn_profile1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_profile1Layout.createSequentialGroup()
+                .addGroup(btn_profile1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(icon_profile1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_btn_profile1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
@@ -393,6 +470,11 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(herobar, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
                     .addComponent(displaycontent, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)))
+            .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(contentLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(btn_profile1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -404,6 +486,11 @@ public class Dashboard extends javax.swing.JFrame {
                         .addComponent(displaycontent, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE))
                     .addComponent(sidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(contentLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(btn_profile1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -431,6 +518,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         System.exit(0);
+        dbc.CloseConnection();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
@@ -454,16 +542,42 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void txt_btn_employeesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_btn_employeesMouseClicked
         ContentHandle.Panel.Show(displaycontent, CM_Views.EmployeesModule.FindEmployee(), contentWidth, contentHeight);
-        System.out.println("SESION ID: " + sessionID);
+        System.out.println("SESION ID: " + Login.actualSession.getId());
     }//GEN-LAST:event_txt_btn_employeesMouseClicked
 
     private void btn_profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_profileMouseClicked
-        ContentHandle.Panel.Show(displaycontent, CM_Views.EmployeeProfileModule.EmployeeProfile(sessionID), contentWidth, contentHeight);
+        ContentHandle.Panel.Show(displaycontent, CM_Views.EmployeeProfileModule.EmployeeProfile(), contentWidth, contentHeight);
     }//GEN-LAST:event_btn_profileMouseClicked
 
     private void btn_departmentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_departmentsMouseClicked
         ContentHandle.Panel.Show(displaycontent, CM_Views.DepartmentsModule.Departaments(), contentWidth, contentHeight);
     }//GEN-LAST:event_btn_departmentsMouseClicked
+
+    private void btn_profile1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_profile1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_profile1MouseClicked
+
+    private void btn_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_logoutMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_logoutMouseClicked
+
+    private void txt_btn_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_btn_logoutMouseClicked
+        
+        int option = JOptionPane.showConfirmDialog(this, messages.getLoggedOutPopUp(), "Aviso", JOptionPane.YES_NO_OPTION);
+        
+        switch (option) {
+            case 0:
+                JOptionPane.showMessageDialog(this, messages.getLoggedOut(), "Aviso", JOptionPane.OK_OPTION);
+                this.dispose();
+                dbc.CloseConnection();
+                CM_Views.LoginWindow().setVisible(true);
+                break;
+            case 1:
+           
+                break;
+        }
+        
+    }//GEN-LAST:event_txt_btn_logoutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -495,7 +609,7 @@ public class Dashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Dashboard(sessionID).setVisible(true);
+                new Dashboard().setVisible(true);
             }
         });
     }
@@ -504,7 +618,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel btn_close;
     private javax.swing.JPanel btn_departments;
     private javax.swing.JPanel btn_employees;
+    private javax.swing.JPanel btn_logout;
     private javax.swing.JPanel btn_profile;
+    private javax.swing.JPanel btn_profile1;
     private javax.swing.JPanel btn_projects;
     private javax.swing.JPanel btn_reports;
     private javax.swing.JPanel content;
@@ -514,6 +630,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel icon_departments;
     private javax.swing.JLabel icon_employees;
     private javax.swing.JLabel icon_profile;
+    private javax.swing.JLabel icon_profile1;
     private javax.swing.JLabel icon_projects;
     private javax.swing.JLabel icon_reports;
     private javax.swing.JLabel jLabel1;
@@ -521,7 +638,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel sidebar;
     private javax.swing.JLabel txt_btn_departments;
     private javax.swing.JLabel txt_btn_employees;
+    private javax.swing.JLabel txt_btn_logout;
     private javax.swing.JLabel txt_btn_profile;
+    private javax.swing.JLabel txt_btn_profile1;
     private javax.swing.JLabel txt_btn_projects;
     private javax.swing.JLabel txt_btn_reports;
     // End of variables declaration//GEN-END:variables

@@ -20,11 +20,9 @@ public class CM_Views {
         return new Login();
     }
 
-    /*
     public static GUI.MainModules.Dashboard DashboardWindow() {
         return new Dashboard();
     }
-*/
 
     public class EmployeesModule {
 
@@ -55,8 +53,8 @@ public class CM_Views {
 
     public class EmployeeProfileModule {
 
-        public static GUI.Modules.EmployeeProfile EmployeeProfile(String id) {
-            return new EmployeeProfile(id);
+        public static GUI.Modules.EmployeeProfile EmployeeProfile() {
+            return new EmployeeProfile();
         }
     }
 

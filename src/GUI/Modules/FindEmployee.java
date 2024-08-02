@@ -1,6 +1,5 @@
 package GUI.Modules;
 
-import ComponentMaintainer.CM_Color;
 /**
  * @author Kris
  */
@@ -102,6 +101,7 @@ public class FindEmployee extends javax.swing.JPanel {
                 "Nombre", "Departamento", "Cargo", "Asistencia promedio", "Tareas completadas", "Salario"
             }
         ) {
+            @SuppressWarnings("rawtypes")
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Float.class, java.lang.Integer.class, java.lang.Long.class
             };
@@ -109,6 +109,7 @@ public class FindEmployee extends javax.swing.JPanel {
                 false, true, true, true, true, true
             };
 
+            @SuppressWarnings("rawtypes")
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }

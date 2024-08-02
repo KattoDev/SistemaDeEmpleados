@@ -1,6 +1,5 @@
 package GUI.Modules;
 
-import ComponentMaintainer.CM_Color;
 /**
  * @author Kris
  */

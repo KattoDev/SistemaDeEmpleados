@@ -5,8 +5,10 @@ package ComponentMaintainer;
  */
 public class CM_Messages {
 
-    String authGaranted = "credenciales correctas";
-    String authFailed = "credenciales incorrectas";
+    private String authGaranted = "credenciales correctas";
+    private String authFailed = "credenciales incorrectas";
+    private String loggedOutPopUp = "¿Desea cerrar la sesión?";
+    private String loggedOut = "Se ha cerrado la sesión";
 
     public String getAuthGaranted() {
         return authGaranted;
@@ -16,4 +18,11 @@ public class CM_Messages {
         return authFailed;
     }
 
+    public String getLoggedOutPopUp() {
+        return loggedOutPopUp;
+    }
+
+    public String getLoggedOut() {
+        return loggedOut;
+    }
 }

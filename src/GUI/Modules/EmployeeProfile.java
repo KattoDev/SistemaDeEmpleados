@@ -1,46 +1,16 @@
 package GUI.Modules;
 
 import ComponentMaintainer.CM_Color;
-import GUI.MainModules.Dashboard;
-import javax.swing.JOptionPane;
-import ComponentMaintainer.DatabaseConection;
 /**
  * @author Kris
  */
 public class EmployeeProfile extends javax.swing.JPanel {
-    public  String sessionID;
+    
     /**
      * Creates new form EmployeeRegister
-     * @param id the id from the user
      */
-    public EmployeeProfile(String id) {
-        this.sessionID = id;
+    public EmployeeProfile() {
         initComponents();
-        DatabaseConection dbc = new DatabaseConection();
-        dbc.connectDatabase();
-        System.out.println("select * from users where email = \"" + sessionID + "\"");
-
-        try {
-                dbc.resultSet = dbc.statement.executeQuery("select * from users where id = \"" + sessionID + "\"");
-
-            if (dbc.resultSet.next()) {
-                // name, address, birthday, phoneNumber, email, position, 
-                txt_name.setText(dbc.resultSet.getString("name"));
-                txt_address.setText(dbc.resultSet.getString("address"));
-                txt_birthday.setText(dbc.resultSet.getString("birthday"));
-                txt_phoneNumber.setText(dbc.resultSet.getString("phoneNumber"));
-                txt_email.setText(dbc.resultSet.getString("email"));
-                txt_position.setText(dbc.resultSet.getString("position"));
-                
-                } else {
-
-                    System.out.println("ERROR AL RECIBIR DATOS");
-
-                }
-            }
-        catch (Exception e) {
-            System.err.println("ERROR " + e);
-        }
     }
 
     /**
