@@ -13,8 +13,8 @@ public class DatabaseConection {
 
     final private String urlRoot = "localhost";
     final private String urlPort = "3306";
-    final private String dbUser = "root";
-    final private String dbPassword = "localroothost";
+    final private String dbUser = "DatabaseConnection";
+    final private String dbPassword = "fMBTBgjNRZyyiv3C";
     final private String dbRoot = "employeesystem";
     public Connection connection = null;
     public ResultSet resultSet;

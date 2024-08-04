@@ -6,8 +6,6 @@
 ### Instructor líder
 Mgrt. Yesica Paola Carrascal Quintero
 
-
-
 # Sistema de Empleados
 
 Desarrolle un sistema de gestión de empleados en Java que cumpla con los siguientes requerimientos funcionales:
@@ -44,7 +42,25 @@ El sistema debe generar informes y estadísticas sobre el rendimiento de los emp
 ### 10. Autenticación y autorización:
 El sistema debe implementar un mecanismo de autenticación y autorización para garantizar que solo los usuarios registrados y autorizados puedan acceder y realizar acciones en el sistema.
 
+# MODO DE USO / PREVIEW
 
+1. Descomprime el backup de la DB en
+```batch
+  EmployeeSystem\SQLBackup\employeesystem.rar
+```
+2. Sube la base de datos en PHPMyAdmin
+
+3. Configura un usuario para la conexion con la DB de la siguiente manera
+
+```batch
+User name: DatabaseConnection
+Host name: localhost
+Password: Yes
+Global privilegies: SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, FILE, INDEX, ALTER, CREATE TEMPORARY TABLES, CREATE VIEW, EVENT, TRIGGER, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, EXECUTE
+User Password: fMBTBgjNRZyyiv3C
+```
+4. Añade un usuario y contraseña en la base de datos ```users```.
+5. Ejecuta el proyecto
 
 # Assets
 ### prototipado
@@ -54,7 +70,8 @@ El sistema debe implementar un mecanismo de autenticación y autorización para 
 [iconos](https://boxicons.com/)
 
 ### tipografias
-[BUNGEE](https://fonts.google.com/specimen/Bungee)
+[INTER](https://fonts.google.com/specimen/Inter)
+[LilitaOne](https://fonts.google.com/specimen/Lilita+One)
 
 ### librerias
 [project handler - RitzzRiver](https://github.com/RitzzRiver/Project-handler)<br>

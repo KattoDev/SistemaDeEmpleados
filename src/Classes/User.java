@@ -1,5 +1,6 @@
 package Classes;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,22 +8,21 @@ import java.sql.SQLException;
 import ComponentMaintainer.DatabaseConection;
 import javax.swing.JOptionPane;
 
-
 public class User {
 
     DatabaseConection dbc = new DatabaseConection();
 
-    public int id;
-    public String name;
-    public String address;
-    public String birthDay;
-    public String phoneNumber;
-    public String email;
-    public String position;
-    public String salary;
-    public String password;
-    public String checkinHour;
-    public String checkoutHour;
+    private int id;
+    private String name;
+    private String address;
+    private String birthDay;
+    private String phoneNumber;
+    private String email;
+    private String position;
+    private String salary;
+    private String password;
+    private String checkinHour;
+    private String checkoutHour;
 
     // Constructors
     public User() {
@@ -87,7 +87,7 @@ public class User {
     public String getCheckoutHour() {
         return checkoutHour;
     }
-    
+
     // Setters
     public void setId(int id) {
         this.id = id;
@@ -137,15 +137,15 @@ public class User {
 
     /**
      * Method for User Auth
-     * @param email The email registered in the system
+     * 
+     * @param email    The email registered in the system
      * @param password The password registered in the system
      * @return the Auth status
      */
-    public boolean Authenticate(String email, String password) {
-        dbc.connectDatabase();
+    public boolean Authenticate(String email, String password, Connection dbConnection) {
         String query = "SELECT * FROM users WHERE email = ? AND password = ?";
 
-        try (PreparedStatement stmt = dbc.connection.prepareStatement(query)) {
+        try (PreparedStatement stmt = dbConnection.prepareStatement(query)) {
 
             stmt.setString(1, email);
             stmt.setString(2, password);
@@ -162,14 +162,17 @@ public class User {
                     this.salary = rs.getString("salary");
                     this.password = rs.getString("password");
                     return true;
-                } else {
+                }
+                else {
                     return false;
                 }
-            } catch (SQLException sqle) {
+            }
+            catch (SQLException sqle) {
                 sqle.printStackTrace();
                 return false;
             }
-        } catch (SQLException sqle) {
+        }
+        catch (SQLException sqle) {
             sqle.printStackTrace();
             return false;
         }
@@ -177,16 +180,14 @@ public class User {
 
     /**
      * <ul>
-     * <li>Fetch the user profile in the system, overriding the info fetched in Login().</li>
-     * <li>Connects to the DB</li>
-     * <li>Disconects the DB after fetch</li>
+     * <li>Fetch the user profile in the system, overriding the info fetched in
+     * Login().</li>
      * </ul>
      */
-    public void SeeInfo() {
-        dbc.connectDatabase();
+    public void SeeInfo(int userId, Connection dbConnection) {
         try {
-            PreparedStatement stmt = dbc.connection.prepareStatement("SELECT * FROM users WHERE id = ?");
-            stmt.setInt(1, id);
+            PreparedStatement stmt = dbConnection.prepareStatement("SELECT * FROM users WHERE id = ?");
+            stmt.setInt(1, userId);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 this.name = rs.getString("name");
@@ -196,37 +197,62 @@ public class User {
                 this.email = rs.getString("email");
                 this.position = rs.getString("position");
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
-        dbc.CloseConnection();
     }
 
-    public void UpdateInfo() {
-        dbc.connectDatabase();
+    /**
+     * Method for user confirmation with System info changes.
+     * @param editedInformation boolean for tracking if the user has make changes in the System info
+     * @param dbConnection the connection with the DB
+     */
+    public void confirmInfoUpdate(boolean editedInformation, Connection dbConnection){
+        
+        int userOption = 1;
+
+        if (editedInformation){
+            userOption = JOptionPane.showConfirmDialog(null, "Hay información sin guardar, ¿desea guardar?", "Atención", JOptionPane.YES_NO_OPTION);
+        }
+
+        if(userOption==0){
+            UpdateInfo(dbConnection);
+        }
+
+    }
+
+    public void UpdateInfo(Connection dbConnection) {
         try {
-            String updateQuery = "UPDATE users SET name = ?, email = ?, phoneNumber = ?, address = ?, birthday = ?, position = ?, salary = ?";
-            PreparedStatement pstmt = dbc.connection.prepareStatement(updateQuery);
+            String updateQuery = "UPDATE users SET name = ?, email = ?, phoneNumber = ?, address = ?, birthday = ?, position = ?, salary = ? WHERE id = ?";
+            PreparedStatement pstmt = dbConnection.prepareStatement(updateQuery);
 
             pstmt.setString(1, this.name);
             pstmt.setString(2, this.email);
-            pstmt.setString(4, this.phoneNumber);
-            pstmt.setString(5, this.address);
-            pstmt.setString(6, this.birthDay);
-            pstmt.setString(7, this.position);
-            pstmt.setString(8, this.salary);
+            pstmt.setString(3, this.phoneNumber);
+            pstmt.setString(4, this.address);
+            pstmt.setString(5, this.birthDay);
+            pstmt.setString(6, this.position);
+            pstmt.setString(7, this.salary);
+            pstmt.setInt(8, this.id);
+
             pstmt.executeUpdate();
-        } catch (SQLException sqle) {
+            JOptionPane.showMessageDialog(null, "se ha actualizado la información", "Atención",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch (SQLException sqle) {
             JOptionPane.showMessageDialog(null, "No se puede actualizar la información", "ERROR",
                     JOptionPane.ERROR_MESSAGE);
             System.err.println("ERROR: " + sqle);
         }
-        dbc.CloseConnection();
+
     }
 
     public void RequestPermission() {
+        // TODO make this method
     }
 
     public void ReportAbsence() {
+        // TODO make this method
     }
 }

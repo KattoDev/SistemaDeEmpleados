@@ -13,28 +13,47 @@ import java.io.InputStream;
  */
 public class Fonts {
     private Font font = null;
-    public String BungeeRegular = "Bungee-Regular.ttf";
-   
-    /* Font.PLAIN = 0 , Font.BOLD = 1 , Font.ITALIC = 2
-     * tamanio = float
+    
+    //font list
+    final String lilitaOne = "LilitaOne-Regular.ttf";
+    final String Inter = "Inter_24pt-Regular.ttf";
+    
+
+    public String getLilitaOne() {
+        return lilitaOne;
+    }
+
+    public String getInter() {
+        return Inter;
+    }
+    
+    
+    
+    /**
+     * 
+     * 
+     * @param fontName The font name to set.
+     * @param style
+     *                 <ul>
+     *                 <li>Font.PLAIN = 0</li>
+     *                 <li>Font.BOLD = 1</li>
+     *                 <li>Font.ITALIC = 2</li>
+     *                 </ul>
+     * @param size The font size in px 
+     * @return The font created by the method.
      */
-     
-    public Font CustomFont( String fontName, int style, float size)
-    {
-         try {
-            //Se carga la fuente
-            InputStream is =  getClass().getResourceAsStream(fontName);
+    public Font CustomFont(String fontName, int style, float size) {
+        try {
+            // Se carga la fuente
+            InputStream is = getClass().getResourceAsStream(fontName);
             font = Font.createFont(Font.TRUETYPE_FONT, is);
-        } catch (Exception ex) {
-            //Si existe un error se carga fuente por defecto ARIAL
+        }
+        catch (Exception ex) {
+            // Si existe un error se carga fuente por defecto ARIAL
             System.err.println(fontName + " No se cargo la fuente");
-            font = new Font("Arial", Font.PLAIN, 14);            
+            font = new Font("Arial", Font.PLAIN, 14);
         }
         Font tfont = font.deriveFont(style, size);
         return tfont;
     }
 }
-    
-
-
-    
