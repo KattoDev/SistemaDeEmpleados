@@ -8,11 +8,8 @@ public class Employee extends User {
     public Employee() {
     }
 
-    public Employee(
-            int id, String name, String address, String birthDay, String phoneNumber, String email,
-            String position, String salary, String password, String checkinHour, String checkoutHour,
-            String assignedProject, String assignedDepartment) {
-        super(id, name, address, birthDay, phoneNumber, email, position, salary, password, checkinHour, checkoutHour);
+    public Employee(String assignedProject, String assignedDepartment, int id, String name, String address, String birthDay, String phoneNumber, String email, String position, String salary, String password, String checkinHour, String checkoutHour, String department, int isAdmin) {
+        super(id, name, address, birthDay, phoneNumber, email, position, salary, password, checkinHour, checkoutHour, department, isAdmin);
         this.assignedProject = assignedProject;
         this.assignedDepartment = assignedDepartment;
     }

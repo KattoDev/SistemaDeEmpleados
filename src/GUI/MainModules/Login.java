@@ -21,7 +21,7 @@ public class Login extends javax.swing.JFrame {
     Fonts cf = new Fonts();
     public static DatabaseConection dbc = new DatabaseConection();
     CM_Messages messages = new CM_Messages();
-    static User actualSession = new User();
+    public static User actualSession = new User();
     
     
     /**
@@ -29,6 +29,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        setLocationRelativeTo(null);
         
         setIcons();
 

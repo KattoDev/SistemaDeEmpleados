@@ -5,11 +5,16 @@ import GUI.MainModules.Login;
 
 import GUI.DialogModules.EditDepartment;
 import GUI.DialogModules.NewDepartment;
+import GUI.DialogModules.NewProject;
+import GUI.DialogModules.EditProject;
+import GUI.DialogModules.NewTask;
+import GUI.DialogModules.EditTask;
 
 import GUI.Modules.Departments;
 import GUI.Modules.FindEmployee;
 import GUI.Modules.EmployeeRegister;
 import GUI.Modules.EmployeeProfile;
+import GUI.Modules.Projects;
 
 /**
  * @author Kris
@@ -56,6 +61,30 @@ public class CM_Views {
         public static GUI.Modules.EmployeeProfile EmployeeProfile() {
             return new EmployeeProfile();
         }
+    }
+
+    public class ProjectsModule {
+
+        public static GUI.Modules.Projects Projects() {
+            return new Projects();
+        }
+        
+        public static GUI.DialogModules.NewProject NewProject(){
+            return new NewProject();
+        }
+        
+        public static GUI.DialogModules.EditProject EditProject(){
+            return new EditProject();
+        }
+        
+        public static GUI.DialogModules.NewTask NewTask(){
+            return new NewTask();
+        }
+        
+        public static GUI.DialogModules.EditTask EditTask(){
+            return new EditTask();
+        }
+        
     }
 
 }

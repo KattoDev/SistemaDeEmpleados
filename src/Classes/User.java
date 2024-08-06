@@ -23,13 +23,16 @@ public class User {
     private String password;
     private String checkinHour;
     private String checkoutHour;
+    private String department;
+    private int isAdmin;
+
 
     // Constructors
     public User() {
     }
-
-    public User(int id, String name, String address, String birthDay, String phoneNumber, String email, String position,
-            String salary, String password, String checkinHour, String checkoutHour) {
+    
+    
+    public User(int id, String name, String address, String birthDay, String phoneNumber, String email, String position, String salary, String password, String checkinHour, String checkoutHour, String department, int isAdmin) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -41,6 +44,8 @@ public class User {
         this.password = password;
         this.checkinHour = checkinHour;
         this.checkoutHour = checkoutHour;
+        this.department = department;
+        this.isAdmin = isAdmin;
     }
 
     // Getters
@@ -88,6 +93,16 @@ public class User {
         return checkoutHour;
     }
 
+    public String getDepartment() {
+        return department;
+    }
+
+    public int getIsAdmin() {
+        return isAdmin;
+    }
+    
+    
+
     // Setters
     public void setId(int id) {
         this.id = id;
@@ -133,6 +148,17 @@ public class User {
         this.checkoutHour = checkoutHour;
     }
 
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public void setIsAdmin(int isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+    
+    
+
+    
     // Methods
 
     /**
@@ -161,6 +187,7 @@ public class User {
                     this.position = rs.getString("position");
                     this.salary = rs.getString("salary");
                     this.password = rs.getString("password");
+                    this.isAdmin = rs.getInt("isAdmin");
                     return true;
                 }
                 else {
@@ -205,18 +232,21 @@ public class User {
 
     /**
      * Method for user confirmation with System info changes.
-     * @param editedInformation boolean for tracking if the user has make changes in the System info
-     * @param dbConnection the connection with the DB
+     * 
+     * @param editedInformation boolean for tracking if the user has make changes in
+     *                          the System info
+     * @param dbConnection      the connection with the DB
      */
-    public void confirmInfoUpdate(boolean editedInformation, Connection dbConnection){
-        
+    public void confirmInfoUpdate(boolean editedInformation, Connection dbConnection) {
+
         int userOption = 1;
 
-        if (editedInformation){
-            userOption = JOptionPane.showConfirmDialog(null, "Hay información sin guardar, ¿desea guardar?", "Atención", JOptionPane.YES_NO_OPTION);
+        if (editedInformation) {
+            userOption = JOptionPane.showConfirmDialog(null, "Hay información sin guardar, ¿desea guardar?", "Atención",
+                    JOptionPane.YES_NO_OPTION);
         }
 
-        if(userOption==0){
+        if (userOption == 0) {
             UpdateInfo(dbConnection);
         }
 

@@ -6,21 +6,24 @@ import javax.swing.JOptionPane;
 import ComponentMaintainer.Autofill;
 import ComponentMaintainer.DatabaseConection;
 import GUI.MainModules.Login;
+import GUI.Modules.Projects;
 /**
  * @author Kris
  */
 
-public class EditDepartment extends javax.swing.JFrame {
+public class EditProject extends javax.swing.JFrame {
     
     int xMouse;
     int yMouse;
+    int projectid = Projects.projectid;
     
     Autofill af = new Autofill();
     DatabaseConection dbc = Login.dbc;
+    
     /**
      * Creates new form Login
      */
-    public EditDepartment() {
+    public EditProject() {
         initComponents();
         
         af.LoadEmployeeList(dbc.connection, txt_employee);
@@ -363,14 +366,22 @@ public class EditDepartment extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditDepartment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditDepartment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditDepartment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditDepartment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -383,7 +394,7 @@ public class EditDepartment extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditDepartment().setVisible(true);
+                new EditProject().setVisible(true);
             }
         });
     }
