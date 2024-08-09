@@ -32,7 +32,6 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         setIcons();
-
     }
 
     private void setIcons(){

@@ -8,8 +8,13 @@ import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 
 import Classes.Project;
-import ComponentMaintainer.*;
+
+import ComponentMaintainer.DatabaseConection;
+import ComponentMaintainer.CM_Views;
+import ComponentMaintainer.CM_Color;
+
 import GUI.MainModules.Login;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -30,6 +35,7 @@ public class Projects extends javax.swing.JPanel {
         initComponents();
 
         CreateModel();
+        
         GetTableCellClick();
 
         showProjects(dbc.connection);
@@ -287,7 +293,7 @@ public class Projects extends javax.swing.JPanel {
         }
 
     }
-
+    
     public void GetTableCellClick() {
 
         jTable1.addMouseListener(new MouseAdapter() {

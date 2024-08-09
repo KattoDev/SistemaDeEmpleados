@@ -28,6 +28,7 @@ public class EmployeeProfile extends javax.swing.JPanel {
                 txt_phoneNumber.setText(employee.getPhoneNumber());
                 txt_email.setText(employee.getEmail());
                 txt_position.setText(employee.getPosition());
+                txt_password.setText(employee.getPassword());
         }
 
         /**
@@ -61,6 +62,16 @@ public class EmployeeProfile extends javax.swing.JPanel {
         jSeparator7 = new javax.swing.JSeparator();
         btn_save = new javax.swing.JPanel();
         txt_btn_save = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        password_Container = new javax.swing.JPanel();
+        txt_password = new javax.swing.JTextField();
+        jSeparator8 = new javax.swing.JSeparator();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1080, 640));
         setMinimumSize(new java.awt.Dimension(1080, 640));
@@ -86,11 +97,6 @@ public class EmployeeProfile extends javax.swing.JPanel {
         txt_name.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txt_name.setBorder(null);
         txt_name.setPreferredSize(new java.awt.Dimension(245, 30));
-        txt_name.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txt_nameFocusGained(evt);
-            }
-        });
 
         javax.swing.GroupLayout nameContainerLayout = new javax.swing.GroupLayout(nameContainer);
         nameContainer.setLayout(nameContainerLayout);
@@ -118,11 +124,6 @@ public class EmployeeProfile extends javax.swing.JPanel {
         txt_address.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txt_address.setBorder(null);
         txt_address.setPreferredSize(new java.awt.Dimension(245, 30));
-        txt_address.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txt_addressFocusGained(evt);
-            }
-        });
 
         javax.swing.GroupLayout addressContainerLayout = new javax.swing.GroupLayout(addressContainer);
         addressContainer.setLayout(addressContainerLayout);
@@ -150,11 +151,6 @@ public class EmployeeProfile extends javax.swing.JPanel {
         txt_birthday.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txt_birthday.setBorder(null);
         txt_birthday.setPreferredSize(new java.awt.Dimension(245, 30));
-        txt_birthday.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txt_birthdayFocusGained(evt);
-            }
-        });
 
         javax.swing.GroupLayout birthdayContainerLayout = new javax.swing.GroupLayout(birthdayContainer);
         birthdayContainer.setLayout(birthdayContainerLayout);
@@ -182,11 +178,6 @@ public class EmployeeProfile extends javax.swing.JPanel {
         txt_email.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txt_email.setBorder(null);
         txt_email.setPreferredSize(new java.awt.Dimension(245, 30));
-        txt_email.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txt_emailFocusGained(evt);
-            }
-        });
 
         javax.swing.GroupLayout email_ContainerLayout = new javax.swing.GroupLayout(email_Container);
         email_Container.setLayout(email_ContainerLayout);
@@ -215,11 +206,6 @@ public class EmployeeProfile extends javax.swing.JPanel {
         txt_position.setBorder(null);
         txt_position.setEnabled(false);
         txt_position.setPreferredSize(new java.awt.Dimension(245, 30));
-        txt_position.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txt_positionFocusGained(evt);
-            }
-        });
 
         javax.swing.GroupLayout position_ContainerLayout = new javax.swing.GroupLayout(position_Container);
         position_Container.setLayout(position_ContainerLayout);
@@ -247,11 +233,6 @@ public class EmployeeProfile extends javax.swing.JPanel {
         txt_phoneNumber.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txt_phoneNumber.setBorder(null);
         txt_phoneNumber.setPreferredSize(new java.awt.Dimension(245, 30));
-        txt_phoneNumber.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txt_phoneNumberFocusGained(evt);
-            }
-        });
 
         javax.swing.GroupLayout phoneNumberContainerLayout = new javax.swing.GroupLayout(phoneNumberContainer);
         phoneNumberContainer.setLayout(phoneNumberContainerLayout);
@@ -295,103 +276,155 @@ public class EmployeeProfile extends javax.swing.JPanel {
             .addComponent(txt_btn_save, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
+        jLabel1.setText("Nombre");
+
+        jLabel2.setText("Dirección");
+
+        jLabel3.setText("Fecha de nacimiento (AAAA-MM-DD)");
+
+        jLabel4.setText("Numero telefonico");
+
+        jLabel5.setText("Email");
+
+        password_Container.setBackground(CM_Color.Button());
+        password_Container.setPreferredSize(new java.awt.Dimension(280, 30));
+
+        txt_password.setBackground(CM_Color.Button());
+        txt_password.setFont(new java.awt.Font("Bungee", 0, 12)); // NOI18N
+        txt_password.setForeground(CM_Color.CloseButtonHover());
+        txt_password.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txt_password.setBorder(null);
+        txt_password.setPreferredSize(new java.awt.Dimension(245, 30));
+
+        javax.swing.GroupLayout password_ContainerLayout = new javax.swing.GroupLayout(password_Container);
+        password_Container.setLayout(password_ContainerLayout);
+        password_ContainerLayout.setHorizontalGroup(
+            password_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(password_ContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt_password, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        password_ContainerLayout.setVerticalGroup(
+            password_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, password_ContainerLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+        );
+
+        jLabel6.setText("Contraseña");
+
+        jLabel7.setText("Cargo");
+
         javax.swing.GroupLayout EmployeeRegisterContainerLayout = new javax.swing.GroupLayout(EmployeeRegisterContainer);
         EmployeeRegisterContainer.setLayout(EmployeeRegisterContainerLayout);
         EmployeeRegisterContainerLayout.setHorizontalGroup(
             EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
-                .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_save, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(position_Container, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(email_Container, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(phoneNumberContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
-                            .addGap(37, 37, 37)
-                            .addComponent(lbl_moduleName))
-                        .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
-                            .addGap(60, 60, 60)
-                            .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(nameContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
-                                .addComponent(jSeparator2)
-                                .addComponent(addressContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
-                                .addComponent(jSeparator3)
-                                .addComponent(jSeparator5)
-                                .addComponent(birthdayContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
-                                .addComponent(jSeparator4)))))
+                .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(position_Container, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(email_Container, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(phoneNumberContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(lbl_moduleName))
+                            .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
+                                .addGap(60, 60, 60)
+                                .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(nameContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+                                        .addComponent(jSeparator2)
+                                        .addComponent(addressContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+                                        .addComponent(jSeparator3)
+                                        .addComponent(jSeparator5)
+                                        .addComponent(birthdayContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+                                        .addComponent(jSeparator4))
+                                    .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel5))))))
+                        .addComponent(password_Container, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel6))
+                            .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel7))
+                            .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(jLabel1)))
                 .addContainerGap(468, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EmployeeRegisterContainerLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btn_save, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
         EmployeeRegisterContainerLayout.setVerticalGroup(
             EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(lbl_moduleName)
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(3, 3, 3)
                 .addComponent(nameContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addressContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(birthdayContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(phoneNumberContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(email_Container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(password_Container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(position_Container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_save, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
         add(EmployeeRegisterContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 // </editor-fold>                        
-
-        private void txt_nameFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txt_nameFocusGained
-                TxtField.Focus.Gain(txt_name, employee.getName());
-        }
-// GEN-LAST:event_txt_nameFocusGained
-
-        private void txt_addressFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txt_addressFocusGained
-                TxtField.Focus.Gain(txt_address, employee.getAddress());
-        }
-
-    // GEN-LAST:event_txt_addressFocusGained
-
-        private void txt_birthdayFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txt_birthdayFocusGained
-                TxtField.Focus.Gain(txt_birthday, employee.getBirthDay());
-        }
-
-    // GEN-LAST:event_txt_birthdayFocusGained
-
-        private void txt_phoneNumberFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txt_phoneNumberFocusGained
-                TxtField.Focus.Gain(txt_phoneNumber, employee.getPhoneNumber());
-        }
-    // GEN-LAST:event_txt_phoneNumberFocusGained
-
-        private void txt_emailFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txt_emailFocusGained
-                TxtField.Focus.Gain(txt_email, employee.getEmail());
-        }
-// GEN-LAST:event_txt_emailFocusGained
-
-        private void txt_positionFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txt_positionFocusGained
-                TxtField.Focus.Gain(txt_position, employee.getPosition());
-        }
-    // GEN-LAST:event_txt_positionFocusGained
+// </editor-fold>                        
 
         private void txt_btn_saveMouseClicked(java.awt.event.MouseEvent evt) {
                 User uio = new User(employee.getId(),
@@ -402,7 +435,7 @@ public class EmployeeProfile extends javax.swing.JPanel {
                                 txt_email.getText(),
                                 txt_position.getText(),
                                 employee.getSalary(),
-                                employee.getPassword(),
+                                txt_password.getText(),
                                 employee.getCheckinHour(),
                                 employee.getCheckoutHour(),
                                 employee.getDepartment(),
@@ -418,21 +451,33 @@ public class EmployeeProfile extends javax.swing.JPanel {
     private javax.swing.JPanel birthdayContainer;
     private javax.swing.JPanel btn_save;
     private javax.swing.JPanel email_Container;
+    private javax.swing.JPanel email_Container1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JLabel lbl_moduleName;
     private javax.swing.JPanel nameContainer;
+    private javax.swing.JPanel password_Container;
     private javax.swing.JPanel phoneNumberContainer;
     private javax.swing.JPanel position_Container;
     private javax.swing.JTextField txt_address;
     private javax.swing.JTextField txt_birthday;
     private javax.swing.JLabel txt_btn_save;
     private javax.swing.JTextField txt_email;
+    private javax.swing.JTextField txt_email1;
     private javax.swing.JTextField txt_name;
+    private javax.swing.JTextField txt_password;
     private javax.swing.JTextField txt_phoneNumber;
     private javax.swing.JTextField txt_position;
     // End of variables declaration//GEN-END:variables

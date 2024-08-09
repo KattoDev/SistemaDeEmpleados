@@ -178,16 +178,16 @@ public class User {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    this.id = rs.getInt("id");
-                    this.name = rs.getString("name");
-                    this.address = rs.getString("address");
-                    this.birthDay = rs.getString("birthday");
-                    this.phoneNumber = rs.getString("phoneNumber");
-                    this.email = rs.getString("email");
-                    this.position = rs.getString("position");
-                    this.salary = rs.getString("salary");
-                    this.password = rs.getString("password");
-                    this.isAdmin = rs.getInt("isAdmin");
+                    setId(rs.getInt("id"));
+                    setName(rs.getString("name"));
+                    setAddress(rs.getString("address"));
+                    setBirthDay(rs.getString("birthday"));
+                    setPhoneNumber(rs.getString("phoneNumber"));
+                    setEmail(rs.getString("email"));
+                    setPosition(rs.getString("position"));
+                    setSalary(rs.getString("salary"));
+                    setPassword(rs.getString("password"));
+                    setIsAdmin(rs.getInt("isAdmin"));
                     return true;
                 }
                 else {
@@ -210,23 +210,24 @@ public class User {
      * <li>Fetch the user profile in the system, overriding the info fetched in
      * Login().</li>
      * </ul>
+     * @param userId
+     * @param dbConnection
      */
     public void SeeInfo(int userId, Connection dbConnection) {
-        try {
-            PreparedStatement stmt = dbConnection.prepareStatement("SELECT * FROM users WHERE id = ?");
+        try (PreparedStatement stmt = dbConnection.prepareStatement("SELECT * FROM users WHERE id = ?")) {
             stmt.setInt(1, userId);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                this.name = rs.getString("name");
-                this.address = rs.getString("address");
-                this.birthDay = rs.getString("birthday");
-                this.phoneNumber = rs.getString("phoneNumber");
-                this.email = rs.getString("email");
-                this.position = rs.getString("position");
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    setName(rs.getString("name"));
+                    setAddress(rs.getString("address"));
+                    setBirthDay(rs.getString("birthday"));
+                    setPhoneNumber(rs.getString("phoneNumber"));
+                    setEmail(rs.getString("email"));
+                    setPosition(rs.getString("position"));
+                }
             }
         }
         catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
@@ -253,18 +254,18 @@ public class User {
     }
 
     public void UpdateInfo(Connection dbConnection) {
-        try {
-            String updateQuery = "UPDATE users SET name = ?, email = ?, phoneNumber = ?, address = ?, birthday = ?, position = ?, salary = ? WHERE id = ?";
-            PreparedStatement pstmt = dbConnection.prepareStatement(updateQuery);
+        String updateQuery = "UPDATE users SET name = ?, email = ?, phoneNumber = ?, address = ?, birthday = ?, position = ?, salary = ?, password = ? WHERE id = ?";
+        try (PreparedStatement pstmt = dbConnection.prepareStatement(updateQuery)){
 
-            pstmt.setString(1, this.name);
-            pstmt.setString(2, this.email);
-            pstmt.setString(3, this.phoneNumber);
-            pstmt.setString(4, this.address);
-            pstmt.setString(5, this.birthDay);
-            pstmt.setString(6, this.position);
-            pstmt.setString(7, this.salary);
-            pstmt.setInt(8, this.id);
+            pstmt.setString(1, getName());
+            pstmt.setString(2, getEmail());
+            pstmt.setString(3, getPhoneNumber());
+            pstmt.setString(4, getAddress());
+            pstmt.setString(5, getBirthDay());
+            pstmt.setString(6, getPosition());
+            pstmt.setString(7, getSalary());
+            pstmt.setString(8, getPassword());
+            pstmt.setInt(9, getId());
 
             pstmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "se ha actualizado la información", "Atención",

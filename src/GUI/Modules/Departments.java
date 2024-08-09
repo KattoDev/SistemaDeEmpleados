@@ -1,11 +1,14 @@
 package GUI.Modules;
 
+import java.awt.event.MouseAdapter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.table.DefaultTableModel;
+
+import java.awt.event.MouseEvent;
 
 import Classes.Department;
 import ComponentMaintainer.*;
@@ -17,6 +20,7 @@ import GUI.MainModules.Login;
 public class Departments extends javax.swing.JPanel {
 
     DatabaseConection dbc = Login.dbc;
+    public static String departmentName;
 
     /**
      * Creates new form EmployeeRegister
@@ -27,6 +31,8 @@ public class Departments extends javax.swing.JPanel {
         CreateModel();
 
         showDepartments(dbc.connection);
+
+        GetTableCellClick();
     }
 
     private void showDepartments(Connection dbConnection) {
@@ -42,7 +48,7 @@ public class Departments extends javax.swing.JPanel {
                     dept.setName(rs.getString("name"));
                     model.addRow(O);
                     model.setValueAt(dept.getName(), i, 0);
-                    System.out.println("se añadió el departamento " + dept.getName() + " a la tabla");
+                    model.setValueAt(("Administrar " + dept.getName()).toUpperCase(), i, 1);
                     i++;
                 }
             }
@@ -63,7 +69,8 @@ public class Departments extends javax.swing.JPanel {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jDialog1 = new javax.swing.JDialog();
@@ -76,14 +83,10 @@ public class Departments extends javax.swing.JPanel {
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jDialog1Layout.setHorizontalGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 400, Short.MAX_VALUE));
+        jDialog1Layout.setVerticalGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 300, Short.MAX_VALUE));
 
         setMaximumSize(new java.awt.Dimension(1080, 640));
         setMinimumSize(new java.awt.Dimension(1080, 640));
@@ -117,59 +120,57 @@ public class Departments extends javax.swing.JPanel {
 
         javax.swing.GroupLayout btn_newDeptLayout = new javax.swing.GroupLayout(btn_newDept);
         btn_newDept.setLayout(btn_newDeptLayout);
-        btn_newDeptLayout.setHorizontalGroup(
-            btn_newDeptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_newDeptLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txt_btn_newDept, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        btn_newDeptLayout.setHorizontalGroup(btn_newDeptLayout
+                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(btn_newDeptLayout.createSequentialGroup().addContainerGap()
+                        .addComponent(txt_btn_newDept, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                        .addContainerGap()));
         btn_newDeptLayout.setVerticalGroup(
-            btn_newDeptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txt_btn_newDept, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                btn_newDeptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+                        txt_btn_newDept, javax.swing.GroupLayout.Alignment.TRAILING,
+                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
         jTable1.setBackground(CM_Color.Button());
         jTable1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTable1.setForeground(CM_Color.Text());
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {
 
-            },
-            new String [] {
+        }, new String[] {
 
-            }
-        ));
+        }));
         jTable1.setGridColor(new java.awt.Color(0, 0, 0));
         jTable1.setSelectionBackground(ColorScheme.SetColor.EGGSHELL);
         jScrollPane1.setViewportView(jTable1);
 
-        javax.swing.GroupLayout EmployeeRegisterContainerLayout = new javax.swing.GroupLayout(EmployeeRegisterContainer);
+        javax.swing.GroupLayout EmployeeRegisterContainerLayout = new javax.swing.GroupLayout(
+                EmployeeRegisterContainer);
         EmployeeRegisterContainer.setLayout(EmployeeRegisterContainerLayout);
         EmployeeRegisterContainerLayout.setHorizontalGroup(
-            EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE)
-                    .addComponent(lbl_moduleName))
-                .addGap(135, 135, 135))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EmployeeRegisterContainerLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_newDept, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(126, 126, 126))
-        );
+                EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup().addGap(37, 37, 37)
+                                .addGroup(EmployeeRegisterContainerLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 908,
+                                                Short.MAX_VALUE)
+                                        .addComponent(lbl_moduleName))
+                                .addGap(135, 135, 135))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                EmployeeRegisterContainerLayout.createSequentialGroup()
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btn_newDept, javax.swing.GroupLayout.PREFERRED_SIZE, 174,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(126, 126, 126)));
         EmployeeRegisterContainerLayout.setVerticalGroup(
-            EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(lbl_moduleName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_newDept, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
-        );
+                EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup().addGap(27, 27, 27)
+                                .addComponent(lbl_moduleName)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_newDept, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22).addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(41, Short.MAX_VALUE)));
 
         add(EmployeeRegisterContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
@@ -189,7 +190,7 @@ public class Departments extends javax.swing.JPanel {
                         java.lang.String.class, java.lang.String.class };
                 boolean[] canEdit = new boolean[] {
                         false, false };
-                        
+
                 @SuppressWarnings({
                         "rawtypes", "unchecked" })
                 @Override
@@ -208,6 +209,24 @@ public class Departments extends javax.swing.JPanel {
             System.err.println("No se pudo crear la tabla " + e);
         }
 
+    }
+
+    public void GetTableCellClick() {
+        
+        jTable1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                int row = jTable1.rowAtPoint(evt.getPoint());
+                int column = jTable1.columnAtPoint(evt.getPoint());
+                int deptOptions = 1;
+
+                if (column == deptOptions) {
+                    departmentName = (String) model.getValueAt(row, column-1);
+                    CM_Views.DepartmentsModule.EditDepartment().setVisible(true);
+                    System.err.println(departmentName);
+                }
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
