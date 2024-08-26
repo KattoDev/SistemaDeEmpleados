@@ -7,52 +7,45 @@ import java.sql.SQLException;
 
 import javax.swing.table.DefaultTableModel;
 
-import ComponentMaintainer.DatabaseConection;
 import GUI.MainModules.Login;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * @author Kris
  */
-public class FindEmployee extends javax.swing.JPanel {
-    DatabaseConection dbc = Login.dbc;
+public final class FindEmployee extends javax.swing.JPanel {
 
     /**
      * Creates new form EmployeeRegister
      */
     public FindEmployee() {
         initComponents();
-        CreateModel();
-
-        listEmployees(dbc.connection);
+        FindEmployeeCreateModel();
+        listEmployees(Login.dbc.connection);
 
     }
 
-    private void listEmployees(Connection dbConnection){
-        Object O[] = null;
-        try {
-            PreparedStatement ustmt = dbConnection.prepareStatement("SELECT * FROM users");
-            ResultSet urs = ustmt.executeQuery();
-            int i=0;
-            while (urs.next()) {
-                model.addRow(O);
-                model.setValueAt(urs.getString("name"), i, 0);
+    private void listEmployees(Connection dbConnection) {
+        final String listQuery = "SELECT usr_name, usr_position, usr_salary, dept_name FROM users, departments WHERE usr_assignedDepartment = dept_id";
 
-                //Get the User's department
-                PreparedStatement dstmt = dbConnection.prepareStatement("SELECT name FROM departments where id = ?");
-                dstmt.setString(1, urs.getString("assignedDepartment"));
-                ResultSet drs = dstmt.executeQuery();
-                if (drs.next()){
-                    model.setValueAt(drs.getString("name"), i, 1);
+        Object O[] = null;
+
+        try (PreparedStatement pstmt = dbConnection.prepareStatement(listQuery)) {
+            try (ResultSet rs = pstmt.executeQuery()) {
+                int i = 0;
+                while (rs.next()) {
+                    model.addRow(O);
+                    model.setValueAt(rs.getString("usr_name"), i, 0);
+                    model.setValueAt(rs.getString("dept_name"), i, 1);
+                    model.setValueAt(rs.getString("usr_position"), i, 2);
+                    model.setValueAt(rs.getString("usr_salary"), i, 3);
+                    i++;
                 }
-                model.setValueAt(urs.getString("position"), i, 2);
-                // TODO ↓ Update this ↓
-                model.setValueAt("Ninguna por el momento", i, 3);
-                model.setValueAt(urs.getString("salary"), i, 4);
-                i++;
             }
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.err.println("Error al listar los empleados: " + e);
         }
 
     }
@@ -64,17 +57,18 @@ public class FindEmployee extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         EmployeeRegisterContainer = new javax.swing.JPanel();
         lbl_moduleName = new javax.swing.JLabel();
         btn_filter = new javax.swing.JPanel();
         txt_btn_filter = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        filterby_salary = new javax.swing.JComboBox<>();
+        filterby_position = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_FindEmployee = new javax.swing.JTable();
 
         setMaximumSize(new java.awt.Dimension(1080, 640));
         setMinimumSize(new java.awt.Dimension(1080, 640));
@@ -102,129 +96,168 @@ public class FindEmployee extends javax.swing.JPanel {
 
         javax.swing.GroupLayout btn_filterLayout = new javax.swing.GroupLayout(btn_filter);
         btn_filter.setLayout(btn_filterLayout);
-        btn_filterLayout.setHorizontalGroup(
-            btn_filterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btn_filterLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txt_btn_filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        btn_filterLayout
+                .setHorizontalGroup(btn_filterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                btn_filterLayout.createSequentialGroup()
+                                        .addComponent(txt_btn_filter, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(0, 0, 0)));
         btn_filterLayout.setVerticalGroup(
-            btn_filterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txt_btn_filter, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                btn_filterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+                        txt_btn_filter, javax.swing.GroupLayout.Alignment.TRAILING,
+                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
-        jComboBox1.setBackground(ColorScheme.SetColor.EGGSHELL);
-        jComboBox1.setForeground(ColorScheme.SetColor.DESERT_SAND);
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Salario:", "1000000", " " }));
-        jComboBox1.setBorder(null);
-        jComboBox1.setPreferredSize(new java.awt.Dimension(120, 30));
+        filterby_salary.setBackground(ColorScheme.SetColor.EGGSHELL);
+        filterby_salary.setForeground(ColorScheme.SetColor.DESERT_SAND);
+        filterby_salary.setModel(
+                new javax.swing.DefaultComboBoxModel<>(SortItems(Login.dbc.connection, "usr_salary", "Salario:")));
+        filterby_salary.setBorder(null);
+        filterby_salary.setPreferredSize(new java.awt.Dimension(120, 30));
 
-        jComboBox2.setBackground(ColorScheme.SetColor.DESERT_SAND);
-        jComboBox2.setForeground(ColorScheme.SetColor.DESERT_SAND);
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cargo:", "Administrador", "Asesor", "Testeo" }));
-        jComboBox2.setBorder(null);
-        jComboBox2.setPreferredSize(new java.awt.Dimension(120, 30));
+        filterby_position.setBackground(ColorScheme.SetColor.DESERT_SAND);
+        filterby_position.setForeground(ColorScheme.SetColor.DESERT_SAND);
+        filterby_position.setModel(
+                new javax.swing.DefaultComboBoxModel<>(SortItems(Login.dbc.connection, "usr_position", "Cargo:")));
+        filterby_position.setBorder(null);
+        filterby_position.setPreferredSize(new java.awt.Dimension(120, 30));
 
-        jTable1.setBackground(ColorScheme.SetColor.DESERT_SAND);
-        jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTable1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTable1.setForeground(ColorScheme.SetColor.UMBER);
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Nombre", "Departamento", "Cargo", "Asistencia promedio", "Tareas completadas", "Salario"
-            }
-        ) {
+        tbl_FindEmployee.setBackground(ColorScheme.SetColor.DESERT_SAND);
+        tbl_FindEmployee.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tbl_FindEmployee.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tbl_FindEmployee.setForeground(ColorScheme.SetColor.UMBER);
+        tbl_FindEmployee.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {
+                {
+                        null, null, null, null, null, null },
+                {
+                        null, null, null, null, null, null },
+                {
+                        null, null, null, null, null, null },
+                {
+                        null, null, null, null, null, null },
+                {
+                        null, null, null, null, null, null },
+                {
+                        null, null, null, null, null, null },
+                {
+                        null, null, null, null, null, null },
+                {
+                        null, null, null, null, null, null },
+                {
+                        null, null, null, null, null, null },
+                {
+                        null, null, null, null, null, null } },
+                new String[] {
+                        "Nombre", "Departamento", "Cargo", "Asistencia promedio", "Tareas completadas", "Salario" }) {
             @SuppressWarnings("rawtypes")
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Float.class, java.lang.Integer.class, java.lang.Long.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true
-            };
+        Class[] types = new Class[] {
+                    java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Float.class,
+                    java.lang.Integer.class, java.lang.Long.class };
+            boolean[] canEdit = new boolean[] {
+                    false, true, true, true, true, true };
 
             @SuppressWarnings("rawtypes")
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+        public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
-        jTable1.setGridColor(new java.awt.Color(0, 0, 0));
-        jTable1.setSelectionBackground(ColorScheme.SetColor.EGGSHELL);
-        jScrollPane1.setViewportView(jTable1);
+        tbl_FindEmployee.setGridColor(new java.awt.Color(0, 0, 0));
+        tbl_FindEmployee.setSelectionBackground(ColorScheme.SetColor.EGGSHELL);
+        jScrollPane1.setViewportView(tbl_FindEmployee);
 
-        javax.swing.GroupLayout EmployeeRegisterContainerLayout = new javax.swing.GroupLayout(EmployeeRegisterContainer);
+        javax.swing.GroupLayout EmployeeRegisterContainerLayout = new javax.swing.GroupLayout(
+                EmployeeRegisterContainer);
         EmployeeRegisterContainer.setLayout(EmployeeRegisterContainerLayout);
         EmployeeRegisterContainerLayout.setHorizontalGroup(
-            EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE)
-                    .addComponent(lbl_moduleName))
-                .addGap(135, 135, 135))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EmployeeRegisterContainerLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(103, 103, 103)
-                .addComponent(btn_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75))
-        );
-        EmployeeRegisterContainerLayout.setVerticalGroup(
-            EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(lbl_moduleName)
-                .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addGroup(EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(22, 22, 22)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
+                EmployeeRegisterContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup().addGap(37, 37, 37)
+                                .addGroup(EmployeeRegisterContainerLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 908,
+                                                Short.MAX_VALUE)
+                                        .addComponent(lbl_moduleName))
+                                .addGap(135, 135, 135))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EmployeeRegisterContainerLayout
+                                .createSequentialGroup().addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(filterby_position, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(filterby_salary, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(103, 103, 103).addComponent(btn_filter, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(75, 75, 75)));
+        EmployeeRegisterContainerLayout.setVerticalGroup(EmployeeRegisterContainerLayout
+                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup().addGap(27, 27, 27)
+                        .addComponent(lbl_moduleName)
+                        .addGroup(EmployeeRegisterContainerLayout
+                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup().addGap(9, 9, 9)
+                                        .addGroup(EmployeeRegisterContainerLayout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(filterby_salary, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(filterby_position, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(EmployeeRegisterContainerLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btn_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(22, 22, 22).addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484,
+                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(36, Short.MAX_VALUE)));
 
         add(EmployeeRegisterContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
+    private String[] SortItems(Connection dbConnection, String queryText, String placeholder) {
+        final String sortQuery = "SELECT " + queryText + " FROM users";
+
+        ArrayList<String> sortedList = new ArrayList<>();
+        HashSet<String> tempSort = new HashSet<>();
+
+        sortedList.add(placeholder);
+
+        try (PreparedStatement pstmt = dbConnection.prepareStatement(sortQuery)) {
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    String element = rs.getString(queryText);
+                    if (!tempSort.contains(element)) {
+                        tempSort.add(element);
+                        sortedList.add(element);
+                    }
+                }
+            }
+        } catch (SQLException sqle) {
+            System.err.println("Error al ordenar los elementos: " + sqle);
+        }
+
+        return sortedList.toArray(String[]::new);
+    }
+
     DefaultTableModel model;
 
-    private void CreateModel() {
+    public void FindEmployeeCreateModel() {
         try {
-            model = (new DefaultTableModel(null, new String[] {
-                    "Nombre y Apellidos", "Departamento", "Cargo", "Tareas completadas", "Salario" }) {
+            model = (new DefaultTableModel(null, new String[]{
+                "Nombre y Apellidos", "Departamento", "Cargo", "Salario"}) {
                 @SuppressWarnings("rawtypes")
-                Class[] types = new Class[] {
-                        java.lang.String.class, java.lang.String.class,
-                        java.lang.String.class, java.lang.String.class,
-                        java.lang.String.class};
-                boolean[] canEdit = new boolean[] {
-                        false, false, false, false, false };
+                Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.String.class, java.lang.String.class,
+                    java.lang.String.class};
+                boolean[] canEdit = new boolean[]{
+                    false, false, false, false};
 
                 @SuppressWarnings({
-                        "rawtypes", "unchecked" })
+                    "rawtypes", "unchecked"})
                 @Override
                 public Class getColumnClass(int columnIndex) {
                     return types[columnIndex];
@@ -235,22 +268,20 @@ public class FindEmployee extends javax.swing.JPanel {
                     return canEdit[columnIndex];
                 }
             });
-            jTable1.setModel(model);
+            tbl_FindEmployee.setModel(model);
+        } catch (Exception e) {
+            System.err.println("Error no se pudo crear la tabla" + e);
         }
-        catch (Exception e) {
-            System.err.println("No se pudo crear la tabla " + e);
-        }
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel EmployeeRegisterContainer;
     private javax.swing.JPanel btn_filter;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> filterby_position;
+    private javax.swing.JComboBox<String> filterby_salary;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbl_moduleName;
+    private javax.swing.JTable tbl_FindEmployee;
     private javax.swing.JLabel txt_btn_filter;
     // End of variables declaration//GEN-END:variables
 }

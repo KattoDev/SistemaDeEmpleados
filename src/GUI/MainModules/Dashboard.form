@@ -391,6 +391,9 @@
                       <Dimension value="[150, 35]"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_reportsMouseClicked"/>
+                  </Events>
 
                   <Layout>
                     <DimensionLayout dim="0">

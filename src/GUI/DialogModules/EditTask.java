@@ -4,27 +4,26 @@ import ComponentMaintainer.CM_Color;
 import javax.swing.JOptionPane;
 
 import ComponentMaintainer.Autofill;
-import ComponentMaintainer.DatabaseConection;
 import GUI.MainModules.Login;
+
 /**
  * @author Kris
  */
-
 public class EditTask extends javax.swing.JFrame {
-    
+
     int xMouse;
     int yMouse;
-    
+
     Autofill af = new Autofill();
-    DatabaseConection dbc = Login.dbc;
+
     /**
      * Creates new form Login
      */
     public EditTask() {
         initComponents();
-        
-        af.LoadEmployeeList(dbc.connection, txt_employee);
-        af.LoadEmployeeList(dbc.connection, txt_mainEmployee);
+
+        af.LoadEmployeeList(Login.dbc.connection, txt_employee);
+        af.LoadEmployeeList(Login.dbc.connection, txt_mainEmployee);
     }
 
     /**
@@ -338,7 +337,7 @@ public class EditTask extends javax.swing.JFrame {
 
     private void btn_lbl_cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_lbl_cancelMouseClicked
         int userOption = JOptionPane.showConfirmDialog(this, "¿Desea descartar los cambios hechos a ${NOMBRE DEL DEPARTAMENTO}?", "", JOptionPane.INFORMATION_MESSAGE);
-        
+
         switch (userOption) {
             case 0 -> {
                 dispose();

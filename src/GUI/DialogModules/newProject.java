@@ -1,28 +1,26 @@
 package GUI.DialogModules;
 
+import Classes.Project;
 import ComponentMaintainer.CM_Color;
 import javax.swing.JOptionPane;
 
-import ComponentMaintainer.DatabaseConection;
-
 import GUI.MainModules.Login;
 import GUI.Modules.Projects;
+
 /**
  * @author Kris
  */
-
 public class NewProject extends javax.swing.JFrame {
-    
+
     int xMouse;
     int yMouse;
-    
-    DatabaseConection dbc = Login.dbc;
+
     /**
      * Creates new form Login
      */
     public NewProject() {
         initComponents();
-        
+
         setLocationRelativeTo(null);
     }
 
@@ -48,7 +46,11 @@ public class NewProject extends javax.swing.JFrame {
         btn_lbl_ok = new javax.swing.JLabel();
         AssignedDeptContainer = new javax.swing.JPanel();
         txt_assignedDept = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cb_status = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Sistema de Empleados - Nuevo departamento");
@@ -128,7 +130,6 @@ public class NewProject extends javax.swing.JFrame {
         NameContainer.setPreferredSize(new java.awt.Dimension(200, 30));
 
         txt_name.setBackground(CM_Color.Button());
-        txt_name.setText("Nombre:");
         txt_name.setBorder(null);
         txt_name.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -156,7 +157,6 @@ public class NewProject extends javax.swing.JFrame {
         DeadlineContainer.setPreferredSize(new java.awt.Dimension(200, 30));
 
         txt_deadline.setBackground(CM_Color.Button());
-        txt_deadline.setText("Fecha de entrega:");
         txt_deadline.setBorder(null);
         txt_deadline.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -206,6 +206,11 @@ public class NewProject extends javax.swing.JFrame {
         btn_ok.setBackground(ColorScheme.SetColor.DESERT_SAND);
         btn_ok.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_ok.setPreferredSize(new java.awt.Dimension(90, 30));
+        btn_ok.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_okMouseClicked(evt);
+            }
+        });
 
         btn_lbl_ok.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btn_lbl_ok.setText("Guardar");
@@ -225,7 +230,6 @@ public class NewProject extends javax.swing.JFrame {
         AssignedDeptContainer.setPreferredSize(new java.awt.Dimension(200, 30));
 
         txt_assignedDept.setBackground(CM_Color.Button());
-        txt_assignedDept.setText("Departamento asignado:");
         txt_assignedDept.setBorder(null);
         txt_assignedDept.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -249,7 +253,15 @@ public class NewProject extends javax.swing.JFrame {
             .addComponent(txt_assignedDept, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(Projects.status));
+        cb_status.setModel(new javax.swing.DefaultComboBoxModel<>(Projects.status));
+
+        jLabel2.setText("Nombre del proyecto");
+
+        jLabel3.setText("Estado");
+
+        jLabel4.setText("Fecha de entrega (AAAA-MM-DD)");
+
+        jLabel5.setText("Departamento Asignado");
 
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
@@ -257,17 +269,32 @@ public class NewProject extends javax.swing.JFrame {
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
             .addGroup(bgLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bgLayout.createSequentialGroup()
-                        .addComponent(btn_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_ok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(AssignedDeptContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
-                        .addComponent(NameContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
-                        .addComponent(DeadlineContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(58, 58, 58)
+                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(bgLayout.createSequentialGroup()
+                                .addComponent(btn_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_ok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(NameContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                                    .addComponent(cb_status, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(DeadlineContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                                    .addGroup(bgLayout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jLabel4))
+                                    .addComponent(AssignedDeptContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                                    .addGroup(bgLayout.createSequentialGroup()
+                                        .addGap(9, 9, 9)
+                                        .addComponent(jLabel5)))
+                                .addGroup(bgLayout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addComponent(jLabel3)))))
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(jLabel2)))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         bgLayout.setVerticalGroup(
@@ -275,21 +302,29 @@ public class NewProject extends javax.swing.JFrame {
             .addGroup(bgLayout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(1, 1, 1)
                 .addComponent(NameContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cb_status, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addGap(1, 1, 1)
                 .addComponent(DeadlineContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(AssignedDeptContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_cancel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_ok, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
 
-        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 280));
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -318,8 +353,8 @@ public class NewProject extends javax.swing.JFrame {
     }//GEN-LAST:event_headerMouseDragged
 
     private void btn_lbl_cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_lbl_cancelMouseClicked
-        int userOption = JOptionPane.showConfirmDialog(this, "¿Desea descartar los cambios hechos a ${NOMBRE DEL DEPARTAMENTO}?", "", JOptionPane.INFORMATION_MESSAGE);
-        
+        int userOption = JOptionPane.showConfirmDialog(this, "¿Desea descartar la creación del Proyecto?", "Aviso", JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_OPTION);
+
         switch (userOption) {
             case 0 -> {
                 dispose();
@@ -351,6 +386,20 @@ public class NewProject extends javax.swing.JFrame {
         TxtField.Focus.Lost(txt_assignedDept, "Departamento asignado:");
     }//GEN-LAST:event_txt_assignedDeptFocusLost
 
+    private void btn_okMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_okMouseClicked
+
+        Project proj = new Project();
+
+        proj.setName(txt_name.getText());
+        proj.setStatus(cb_status.getItemAt(cb_status.getSelectedIndex()));
+        proj.setDueDate(txt_deadline.getText());
+        proj.setAssignedDept(txt_assignedDept.getText());
+
+        proj.create(Login.dbc.connection);
+
+        this.dispose();
+    }//GEN-LAST:event_btn_okMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -377,37 +426,6 @@ public class NewProject extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(NewProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -427,9 +445,13 @@ public class NewProject extends javax.swing.JFrame {
     private javax.swing.JLabel btn_lbl_cancel;
     private javax.swing.JLabel btn_lbl_ok;
     private javax.swing.JPanel btn_ok;
+    private javax.swing.JComboBox<String> cb_status;
     private javax.swing.JPanel header;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField txt_assignedDept;
     private javax.swing.JTextField txt_deadline;
     private javax.swing.JTextField txt_name;

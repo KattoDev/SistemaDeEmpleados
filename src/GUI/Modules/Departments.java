@@ -11,7 +11,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseEvent;
 
 import Classes.Department;
-import ComponentMaintainer.*;
+import ComponentMaintainer.CM_Color;
+import ComponentMaintainer.CM_Views;
 import GUI.MainModules.Login;
 
 /**
@@ -19,7 +20,6 @@ import GUI.MainModules.Login;
  */
 public class Departments extends javax.swing.JPanel {
 
-    DatabaseConection dbc = Login.dbc;
     public static String departmentName;
 
     /**
@@ -30,14 +30,14 @@ public class Departments extends javax.swing.JPanel {
 
         CreateModel();
 
-        showDepartments(dbc.connection);
+        showDepartments(Login.dbc.connection);
 
         GetTableCellClick();
     }
 
     private void showDepartments(Connection dbConnection) {
         Object O[] = null;
-        String query = "SELECT name FROM departments ORDER BY name ASC";
+        String query = "SELECT dept_name FROM departments ORDER BY dept_name ASC";
 
         try (PreparedStatement stmt = dbConnection.prepareStatement(query)) {
 
@@ -45,18 +45,16 @@ public class Departments extends javax.swing.JPanel {
                 int i = 0;
                 Department dept = new Department();
                 while (rs.next()) {
-                    dept.setName(rs.getString("name"));
+                    dept.setName(rs.getString("dept_name"));
                     model.addRow(O);
                     model.setValueAt(dept.getName(), i, 0);
                     model.setValueAt(("Administrar " + dept.getName()).toUpperCase(), i, 1);
                     i++;
                 }
-            }
-            catch (SQLException sqle) {
+            } catch (SQLException sqle) {
                 sqle.printStackTrace();
             }
-        }
-        catch (SQLException sqle) {
+        } catch (SQLException sqle) {
             sqle.printStackTrace();
         }
 
@@ -183,16 +181,16 @@ public class Departments extends javax.swing.JPanel {
 
     private void CreateModel() {
         try {
-            model = (new DefaultTableModel(null, new String[] {
-                    "Nombre", "Administrar" }) {
+            model = (new DefaultTableModel(null, new String[]{
+                "Nombre", "Administrar"}) {
                 @SuppressWarnings("rawtypes")
-                Class[] types = new Class[] {
-                        java.lang.String.class, java.lang.String.class };
-                boolean[] canEdit = new boolean[] {
-                        false, false };
+                Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.String.class};
+                boolean[] canEdit = new boolean[]{
+                    false, false};
 
                 @SuppressWarnings({
-                        "rawtypes", "unchecked" })
+                    "rawtypes", "unchecked"})
                 @Override
                 public Class getColumnClass(int columnIndex) {
                     return types[columnIndex];
@@ -204,15 +202,14 @@ public class Departments extends javax.swing.JPanel {
                 }
             });
             jTable1.setModel(model);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.err.println("No se pudo crear la tabla " + e);
         }
 
     }
 
     public void GetTableCellClick() {
-        
+
         jTable1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
@@ -221,9 +218,8 @@ public class Departments extends javax.swing.JPanel {
                 int deptOptions = 1;
 
                 if (column == deptOptions) {
-                    departmentName = (String) model.getValueAt(row, column-1);
+                    departmentName = (String) model.getValueAt(row, 0);
                     CM_Views.DepartmentsModule.EditDepartment().setVisible(true);
-                    System.err.println(departmentName);
                 }
             }
         });

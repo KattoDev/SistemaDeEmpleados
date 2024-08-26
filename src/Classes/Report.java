@@ -1,7 +1,8 @@
 package Classes;
 
 public class Report {
-    
-    public void GenerateReport(){}
-    public void CalculateWorkedHours(){}
+
+  public void GenerateReport() {}
+
+  public void CalculateWorkedHours() {}
 }

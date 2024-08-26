@@ -1,65 +1,69 @@
 package GUI.DialogModules;
 
-import ComponentMaintainer.CM_Color;
-
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import Classes.Department;
 
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import ComponentMaintainer.Autofill;
-import ComponentMaintainer.DatabaseConection;
+import ComponentMaintainer.CM_Color;
+
 import GUI.MainModules.Login;
 import GUI.Modules.Departments;
 
 /**
  * @author Kris
  */
-
 public class EditDepartment extends javax.swing.JFrame {
 
     int xMouse;
     int yMouse;
 
-    int insertrow;
-
-    String deptName = Departments.departmentName;
+    int insertrow = 0;
 
     Autofill af = new Autofill();
-    DatabaseConection dbc = Login.dbc;
     Department deptInfo = new Department();
 
     @SuppressWarnings("unchecked")
-    ArrayList<String> employeeList = new Department().GetDepartmentInfo(dbc.connection, deptName);
+    ArrayList<String> employeeList = new Department().GetDepartmentInfo(Login.dbc.connection,
+            Departments.departmentName);
 
     /**
      * Creates new form Login
      */
     public EditDepartment() {
         initComponents();
-
+        CreateModel();
         CreateModel();
 
-        af.LoadEmployeeList(dbc.connection, txt_mainEmployee);
+        af.LoadEmployeeList(Login.dbc.connection, txt_mainEmployee);
 
-        deptInfo.GetDepartmentInfo(dbc.connection, deptName);
+        txt_name.setText(Departments.departmentName);
+        LoadTable();
 
-        txt_name.setText(deptName);
+    }
+
+    private void LoadTable() {
+
+        for (String employee : employeeList) {
+            System.out.println("EMPLEADO: " + employee);
+        }
 
         Object O[] = null;
+        model.setRowCount(0);
         model.addRow(O);
         insertrow = 0;
         for (String employee : employeeList) {
+            if (!employee.isEmpty()) {
                 model.setValueAt(employee, insertrow, 0);
                 insertrow++;
+            }
         }
-
-        
     }
 
     /**
@@ -375,9 +379,9 @@ public class EditDepartment extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 
         switch (userOption) {
-        case 0 -> {
-            dispose();
-        }
+            case 0 -> {
+                dispose();
+            }
         }
     }// GEN-LAST:event_btn_lbl_cancelMouseClicked
 
@@ -390,23 +394,21 @@ public class EditDepartment extends javax.swing.JFrame {
             do {
                 employeeList.add(model.getValueAt(i, 0).toString());
                 i++;
-            }
-            while (i != addedEmployeesCount);
+            } while (i != addedEmployeesCount);
         }
-        deptInfo.AssignEmployee(dbc.connection, employeeList);
+        deptInfo.AssignEmployee(Login.dbc.connection, employeeList);
     }// GEN-LAST:event_btn_okMouseClicked
 
     private void btn_addEmployeeMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btn_addEmployeeMouseClicked
         Object O[] = null;
-        int addedEmployeesCount = model.getRowCount()+1;
+        int addedEmployeesCount = model.getRowCount() + 1;
         if (!"Nombre del encargado:".equals(txt_mainEmployee.getText())) {
             model.addRow(O);
             model.setValueAt(txt_mainEmployee.getText(), addedEmployeesCount, 0);
             model.setValueAt("quitar de la lista".toUpperCase(), addedEmployeesCount, 1);
             addedEmployeesCount++;
 
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(this, "No se puede añadir este empleado", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }// GEN-LAST:event_btn_addEmployeeMouseClicked
@@ -430,20 +432,16 @@ public class EditDepartment extends javax.swing.JFrame {
                     break;
                 }
             }
-        }
-        catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(EditDepartment.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
-        }
-        catch (InstantiationException ex) {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(EditDepartment.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
-        }
-        catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(EditDepartment.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
-        }
-        catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(EditDepartment.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         }
@@ -468,16 +466,16 @@ public class EditDepartment extends javax.swing.JFrame {
 
     private void CreateModel() {
         try {
-            model = (new DefaultTableModel(null, new String[] {
-                    "Empleado", "Administrar" }) {
+            model = (new DefaultTableModel(null, new String[]{
+                "Empleado", "Administrar"}) {
                 @SuppressWarnings("rawtypes")
-                Class[] types = new Class[] {
-                        java.lang.String.class, java.lang.String.class };
-                boolean[] canEdit = new boolean[] {
-                        false, false };
+                Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.String.class};
+                boolean[] canEdit = new boolean[]{
+                    false, false};
 
                 @SuppressWarnings({
-                        "rawtypes", "unchecked" })
+                    "rawtypes", "unchecked"})
                 @Override
                 public Class getColumnClass(int columnIndex) {
                     return types[columnIndex];
@@ -489,8 +487,7 @@ public class EditDepartment extends javax.swing.JFrame {
                 }
             });
             jTable1.setModel(model);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.err.println("No se pudo crear la tabla " + e);
         }
 

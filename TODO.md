@@ -33,8 +33,11 @@ El sistema debe proporcionar una vista de lista de todos los empleados registrad
 - [ ] Asignación de tareas y proyectos:
     El sistema debe permitir la asignación de tareas y proyectos a los empleados. Debe mantener un registro de las tareas asignadas, el estado de avance y las fechasde entrega.
 ---
-- [ ] Registro de asistencia:
-    El sistema debe permitir el registro de la asistencia de los empleados, incluyendo la hora de entrada y salida. Debe generar reportes de asistencia y calcular el total de horas trabajadas por cada empleado.
+- <details>
+    <sumary>Registro de asistencia:</sumary>
+        Evaluación de desempeño:
+        El sistema debe permitir el registro de la asistencia de los empleados, incluyendo la hora de entrada y salida. Debe generar reportes de asistencia y calcular el total de horas trabajadas por cada empleado.
+    </details>
 ---
 - [ ] Gestión de permisos y ausencias:
     El sistema debe permitir a los empleados solicitarpermisos o reportar ausencias
@@ -46,9 +49,12 @@ El sistema debe proporcionar una vista de lista de todos los empleados registrad
         Evaluación de desempeño:
         El sistema debe permitir realizar evaluacionesperiódicas del desempeño de los empleados. Debepermitir la creación de criterios de evaluación,asignar puntuaciones y generar informes de desempeñoindividual y grupal.
     </details>
---- 
-- [ ] Generación de informes y estadísticas:
+
+---
+- <details>
+    <summary>Generación de informes y estadísticas:</summary>
         El sistema debe generar informes y estadísticas sobre el rendimiento de los empleados, como el número de tareas completadas, el promedio de asistencia, la distribución de empleados por departamento, entre otros.
+    </details>
 --- 
 - [X] Autenticación y autorización:
         El sistema debe implementar un mecanismo de autenticación y autorización para garantizar que solo los usuarios registrados y autorizados puedan acceder y realizar acciones en el sistema.

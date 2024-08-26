@@ -3,7 +3,6 @@ package GUI.DialogModules;
 import Classes.Department;
 
 import ComponentMaintainer.CM_Color;
-import ComponentMaintainer.DatabaseConection;
 import ComponentMaintainer.Autofill;
 
 import GUI.MainModules.Login;
@@ -20,10 +19,11 @@ import java.util.ArrayList;
  * @author Kris
  */
 public class NewDepartment extends javax.swing.JFrame {
+
     int addedEmployeesCount = 0;
     int xMouse;
     int yMouse;
-    DatabaseConection dbc = Login.dbc;
+
     Autofill af = new Autofill();
 
     /**
@@ -33,9 +33,9 @@ public class NewDepartment extends javax.swing.JFrame {
         initComponents();
 
         CreateModel();
-        
-        af.LoadEmployeeList(dbc.connection, txt_employee);
-        
+
+        af.LoadEmployeeList(Login.dbc.connection, txt_employee);
+
         GetTableCellClick();
     }
 
@@ -324,21 +324,20 @@ public class NewDepartment extends javax.swing.JFrame {
 
     private void btn_okMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_okMouseClicked
         int i = 0;
-        
+
         ArrayList<String> employeeList = new ArrayList<>();
 
-        if(model.getRowCount()>0){
+        if (model.getRowCount() > 0) {
             do {
                 employeeList.add(model.getValueAt(i, 0).toString());
                 i++;
-            } while(i!=addedEmployeesCount);
+            } while (i != addedEmployeesCount);
         }
 
         Department dept = new Department();
-        
+
         dept.setName(txt_name.getText());
-        System.out.println(dept.getName());
-        dept.Create(dbc.connection, employeeList);
+        dept.Create(Login.dbc.connection, employeeList);
     }//GEN-LAST:event_btn_okMouseClicked
 
     private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jLabel1MouseEntered
@@ -366,31 +365,30 @@ public class NewDepartment extends javax.swing.JFrame {
 // GEN-LAST:event_headerMouseDragged
 
     private void btn_lbl_cancelMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btn_lbl_cancelMouseClicked
-         int userOption = JOptionPane.showConfirmDialog(this, "¿Desea descartar la creación de un nuevo departamento?", "AVISO", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-         
-         switch (userOption) {
-         case 0 -> {
-         dispose();
-         }
-         }
+        int userOption = JOptionPane.showConfirmDialog(this, "¿Desea descartar la creación de un nuevo departamento?", "AVISO", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        switch (userOption) {
+            case 0 -> {
+                dispose();
+            }
+        }
     }
     // GEN-LAST:event_btn_lbl_cancelMouseClicked
 
     private void btn_addEmployeeMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btn_addEmployeeMouseClicked
         Object O[] = null;
-     
-        if(!"Nombre del encargado:".equals(txt_employee.getText())){
-            
+
+        if (!"Nombre del encargado:".equals(txt_employee.getText())) {
+
             model.addRow(O);
             model.setValueAt(txt_employee.getText(), addedEmployeesCount, 0);
             model.setValueAt("quitar de la lista".toUpperCase(), addedEmployeesCount, 1);
             addedEmployeesCount++;
             System.err.println("ROW COUNT: " + addedEmployeesCount);
-         
-        }
-        else{
+
+        } else {
             JOptionPane.showMessageDialog(this, "No se puede añadir este empleado", "ERROR", JOptionPane.ERROR_MESSAGE);
-         }
+        }
     }// GEN-LAST:event_btn_addEmployeeMouseClicked
 
     /**
@@ -412,20 +410,16 @@ public class NewDepartment extends javax.swing.JFrame {
                     break;
                 }
             }
-        }
-        catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(NewDepartment.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
-        }
-        catch (InstantiationException ex) {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(NewDepartment.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
-        }
-        catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(NewDepartment.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
-        }
-        catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(NewDepartment.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         }
@@ -446,16 +440,16 @@ public class NewDepartment extends javax.swing.JFrame {
 
     private void CreateModel() {
         try {
-            model = (new DefaultTableModel(null, new String[] {
-                    "Empleado", "Administrar" }) {
+            model = (new DefaultTableModel(null, new String[]{
+                "Empleado", "Administrar"}) {
                 @SuppressWarnings("rawtypes")
-                Class[] types = new Class[] {
-                        java.lang.String.class, java.lang.String.class };
-                boolean[] canEdit = new boolean[] {
-                        false, false };
-                        
+                Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.String.class};
+                boolean[] canEdit = new boolean[]{
+                    false, false};
+
                 @SuppressWarnings({
-                        "rawtypes", "unchecked" })
+                    "rawtypes", "unchecked"})
                 @Override
                 public Class getColumnClass(int columnIndex) {
                     return types[columnIndex];
@@ -467,25 +461,23 @@ public class NewDepartment extends javax.swing.JFrame {
                 }
             });
             jTable1.setModel(model);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.err.println("No se pudo crear la tabla " + e);
         }
 
     }
-    
-        public void GetTableCellClick() {
+
+    public void GetTableCellClick() {
 
         jTable1.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent evt){
+            public void mouseClicked(MouseEvent evt) {
                 int row = jTable1.rowAtPoint(evt.getPoint());
                 int column = jTable1.columnAtPoint(evt.getPoint());
                 int employeeOptions = 1;
 
-
-                if (column == employeeOptions){
-                    System.err.println("SE HA ELIMINADO LA FILA "  + model.getValueAt(row, 0));
+                if (column == employeeOptions) {
+                    System.err.println("SE HA ELIMINADO LA FILA " + model.getValueAt(row, 0));
                     model.removeRow(row);
                     addedEmployeesCount--;
                 }
